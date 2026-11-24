@@ -58,6 +58,42 @@ before="$(snapshot)"
 check "second install is refused" refuses run_install
 check "nothing changed" test "$before" = "$(snapshot)"
 
+echo "# uninstall: fresh home round trip"
+fresh_home
+run_install
+check "uninstall succeeds" run_uninstall
+check "no active CLAUDE.md left" test ! -e "$HOME/.claude/CLAUDE.md"
+check "no active templates left" test ! -e "$HOME/.claude/templates"
+check "installed CLAUDE.md kept aside" has_glob "$HOME/.claude/CLAUDE.md.removed-*"
+check "marker removed" test ! -e "$HOME/.claude/think-prove-checkpoint.install"
+
+echo "# uninstall: restores originals byte-for-byte"
+fresh_home
+mkdir -p "$HOME/.claude/templates"
+echo "my own rules" > "$HOME/.claude/CLAUDE.md"
+echo "my template"  > "$HOME/.claude/templates/mine.md"
+orig="$(mktemp -d)"; TMP_HOMES="$TMP_HOMES $orig"
+cp -R "$HOME/.claude/." "$orig/"
+run_install
+check "uninstall succeeds" run_uninstall
+check "CLAUDE.md restored exactly" cmp -s "$orig/CLAUDE.md" "$HOME/.claude/CLAUDE.md"
+check "templates restored exactly" diff -r "$orig/templates" "$HOME/.claude/templates"
+
+echo "# uninstall: refuses when not installed"
+fresh_home
+mkdir -p "$HOME/.claude"
+echo "untouched" > "$HOME/.claude/CLAUDE.md"
+before="$(snapshot)"
+check "uninstall without install is refused" refuses run_uninstall
+check "nothing changed" test "$before" = "$(snapshot)"
+
+echo "# uninstall: keeps edits made after install"
+fresh_home
+run_install
+echo "my edit" >> "$HOME/.claude/CLAUDE.md"
+run_uninstall
+check "edited file kept in *.removed-*" grep -qx "my edit" "$(compgen -G "$HOME/.claude/CLAUDE.md.removed-*")"
+
 echo
 echo "$PASS passed, $FAIL failed"
 [ "$FAIL" -eq 0 ]

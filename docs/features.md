@@ -8,6 +8,6 @@ Status: `planned` · `in progress` · `done` · `dropped`
 | Build pipeline (HTML → PDF) | planned | `specs/guide.md` | Chrome headless |
 | Framework payload (`framework/`) | done | `specs/installer.md` | Synced from live `~/.claude/` |
 | Install script | done | `specs/installer.md` | Backup first, never silent overwrite |
-| Uninstall script | planned | `specs/installer.md` | Restores backup |
+| Uninstall script | done | `specs/installer.md` | Restores backup |
 | README | planned | `specs/installer.md` | Setup + revert in short steps |
 | LinkedIn carousel teaser | dropped (for now) | — | Possible later, separately |

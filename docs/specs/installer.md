@@ -43,7 +43,8 @@ credits, license.
 <!-- Kept current at every checkpoint: describes the feature AS BUILT. -->
 - `framework/global-CLAUDE.md`, `framework/templates/` (8 files) — copied from the author's live `~/.claude/`
 - `scripts/install.sh` — refuse if marker exists → move existing files to `*.backup-<ts>` → copy `framework/` → write marker → print plugin commands
-- `tests/test_scripts.sh` — harness (`fresh_home`, `check`, `refuses`, `snapshot`, `has_glob`) + payload and install checks (13 total)
+- `scripts/uninstall.sh` — refuse without marker → move installed files to `*.removed-<ts>` → restore backups from the marker → remove marker → print plugin commands
+- `tests/test_scripts.sh` — harness (`fresh_home`, `check`, `refuses`, `snapshot`, `has_glob`) + payload, install and uninstall checks (24 total, all 5 spec cases)
 
 ## Gotchas
 - A second install would back up *our* file over the reader's original; hence the refusal (step 1).
