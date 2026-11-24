@@ -4,11 +4,11 @@ Status: `planned` · `in progress` · `done` · `dropped`
 
 | Feature | Status | Spec | Notes |
 |---|---|---|---|
-| Guide PDF (32 pages) | in progress | `specs/guide.md` | All pages built, dry run passed; awaiting the author's full read |
+| Guide PDF (33 pages) | done | `specs/guide.md` | Doubles as the installer; dry run passed; author reviewed |
 | Build pipeline (HTML → PDF) | done | `specs/guide.md` | Chrome headless; self-checks overflow, page count, appendix fidelity |
 | Appendix for agents | done | `specs/guide.md` | `framework/` files verbatim, generated + verified at build |
 | Framework payload (`framework/`) | done | `specs/installer.md` | From live `~/.claude/`; agent pronouns marked for readers |
 | Install script | done | `specs/installer.md` | Backup first, never silent overwrite |
 | Uninstall script | done | `specs/installer.md` | Restores backup |
-| README | done | `specs/installer.md` | Setup + revert in short steps |
+| README | done | `specs/installer.md` | Mirrors the guide: agent path only; scripts mentioned for technical readers |
 | LinkedIn carousel teaser | dropped (for now) | — | Possible later, separately |

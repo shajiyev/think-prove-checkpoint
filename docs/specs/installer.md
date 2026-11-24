@@ -27,8 +27,11 @@ author's live `~/.claude/CLAUDE.md` and `~/.claude/templates/`, except that the 
 4. Removes the marker; prints the commands to remove the plugin and marketplace (shell + in-app).
 5. Never touches project folders (their `CLAUDE.md` / `docs/` are plain files).
 
-**`README.md`**: what it is (3 lines + PDF link), setup in 4 steps, revert in 3 steps,
-credits, license.
+**`README.md`** mirrors the guide: what it is + PDF link; two ways to use it (read it, or hand it
+to your agent with the PDF's own prompt) + the compatibility warning; what the agent does; make it
+yours (the 6 questions, extend, undo prompt); never stop researching; for technical readers (one
+paragraph: `framework/`, the scripts, the build, tests); credits; license linked to `LICENSE`.
+No manual setup steps.
 
 ## Out of scope
 - Installing or removing plugins from the script (`/plugin` commands are run by the user inside Claude Code).
@@ -45,7 +48,8 @@ credits, license.
 - `framework/global-CLAUDE.md`, `framework/templates/` (8 files) — copied from the author's live `~/.claude/`
 - `scripts/install.sh` — refuse if marker exists → move existing files to `*.backup-<ts>` → copy `framework/` → write marker → print plugin commands
 - `scripts/uninstall.sh` — refuse without marker → move installed files to `*.removed-<ts>` → restore backups from the marker → remove marker → print plugin commands
-- `README.md` — what, setup (4 steps), revert (3 steps), what gets installed, tests, credits; clone URL filled in at M4
+- `README.md` — mirrors the guide (agent path only, same prompts and questions as the PDF); scripts
+  mentioned for technical readers, not as setup steps; credits with the author's LinkedIn; license link
 - `LICENSE` — MIT
 - `tests/test_scripts.sh` — harness (`fresh_home`, `check`, `refuses`, `snapshot`, `has_glob`) + payload, install and uninstall checks (24 total, all 5 spec cases)
 
@@ -66,3 +70,4 @@ credits, license.
 ## Last updated
 2026-11-24 — initial spec from the agreed design.
 2026-11-24 — corrected during planning: plugin shell CLI exists; bash 3.2; build self-check replaces PNG previews.
+2026-11-24 — README rewritten to lead with the agent path (G8); scripts kept for technical readers.
