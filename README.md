@@ -4,7 +4,7 @@
 stop the guessing, skills that demand proof, and project memory that lives in git, where you can
 read it, review it and roll it back.
 
-### **[Download the guide (PDF)](guide/think-prove-checkpoint.pdf)**
+### **[Download the practical guide (PDF)](guide/think-prove-checkpoint.pdf)**
 
 ## Two ways to use it
 - **Read it.** The guide explains what goes wrong without structure, the three layers that fix

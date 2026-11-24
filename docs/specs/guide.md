@@ -17,7 +17,7 @@ headed "Appendix · For your agent":
 
 | # | Page | Content |
 |---|---|---|
-| — | Cover | Title, subtitle, author credit, big idea "Claude forgets. Git doesn't.", contents table. **Kept exactly as approved in G1.** |
+| — | Cover | Title, subtitle, author credit, big idea "Claude forgets. Git doesn't.", contents table. Kept as approved in G1, except the label "A field guide" → "A practical guide" (author's request, 2026-11-24). |
 | 00 | Start here | Two ways to use this PDF, side by side: read it (01–21), or hand it to your AI agent with the copy-paste prompt; a **compatibility warning** (it can clash with your current setup, so the agent analyses it first); the appendix is written for the agent |
 | 01 | The problem | 4 failures: forgets between sessions · guesses silently · "done" without proof · memory you can't review |
 | 02 | The stack | Diagram: Principles (Karpathy) → Process (superpowers) → Memory (docs in git) |
@@ -183,6 +183,7 @@ growing". No certificate count, no club (author's request); facts from the autho
 2026-11-24 — G1 built: style system, build pipeline, cover page.
 2026-11-24 — PDF becomes the installer: page 00, pages 17–18 reworked, appendix A1+ with the
 files verbatim; cover unchanged.
+2026-11-24 — Cover label and README: "A practical guide".
 2026-11-24 — "Before you go" page added before the closing page (author's request).
 2026-11-24 — G3–G7 built in one batch (user's call): all pages, A1–A2, dry run passed.
 2026-11-24 — G2 built: appendix pipeline + 17 tests; ligatures turned off after the text-layer bug.
