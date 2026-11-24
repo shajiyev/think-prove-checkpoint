@@ -69,8 +69,13 @@ It is also built with the workflow it describes: see [`CLAUDE.md`](CLAUDE.md) an
 - `tests/test_guide.sh` and `tests/test_scripts.sh` run the build and installer tests.
 
 ### Prefer to install it by hand? (Claude Code, macOS / Linux)
-The agent path above is the recommended one: it checks your setup for conflicts and tailors the
-files to you. If you'd rather do it yourself:
+> **Recommended: use the agent approach instead.** Hand the PDF to your agent (see
+> [Two ways to use it](#two-ways-to-use-it)). It checks your setup for conflicts first and
+> tailors the files to how you work. The manual steps below install the files exactly as they
+> are, for Claude Code only, with no conflict check and no tailoring (they do back up your
+> existing files first).
+
+If you'd still rather do it yourself:
 
 1. **Clone:** `git clone https://github.com/shajiyev/think-prove-checkpoint.git && cd think-prove-checkpoint`
 2. **Install the files:** `bash scripts/install.sh`
