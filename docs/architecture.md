@@ -2,7 +2,7 @@
 
 ## Stack
 - HTML + CSS (single page source, one `<section class="page">` per A4 page)
-- Google Chrome headless `--print-to-pdf` for the PDF; `--screenshot` for page previews
+- Google Chrome headless `--print-to-pdf` for the PDF; `--dump-dom` for the build self-check
 - Bash for install/uninstall scripts
 
 ## Modules

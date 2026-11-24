@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Think · Prove · Checkpoint</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<section class="page cover">
+  <div class="top"><span>Think · Prove · Checkpoint</span><span>A Claude Code workflow</span></div>
+  <p class="label">A field guide</p>
+  <h1>Think · Prove ·<br><span class="hl">Checkpoint</span></h1>
+  <p class="lead">A small, strict way of building with Claude Code: principles that stop the guessing, skills that demand proof, and project memory that lives in git, where you can read it, review it and roll it back.</p>
+  <p class="byline">Sabir Hajiyev · IT student, ADA University</p>
+  <div class="callout">
+    <p class="label">The whole idea</p>
+    <p>Claude forgets. Git doesn't. So everything Claude needs to remember lives in plain files in your repo.</p>
+  </div>
+  <table class="t">
+    <tr><th>Part</th><th>What it covers</th></tr>
+    <tr><td>01–02</td><td>The problem, and the three-layer stack that answers it</td></tr>
+    <tr><td>03–04</td><td>The principles, and the tools I actually run</td></tr>
+    <tr><td>05–08</td><td>Memory: the global file, project docs, living specs</td></tr>
+    <tr><td>09–13</td><td>Process: brainstorm, plan, test, debug, checkpoint</td></tr>
+    <tr><td>14–16</td><td>Session start, safety and ethics, a worked example</td></tr>
+    <tr><td>17–21</td><td>Setup, revert, cheat sheet, prompts, and proof it works</td></tr>
+  </table>
+  <div class="foot"><span>Think · Prove · Checkpoint</span><span class="n"></span></div>
+</section>
+
+<script>
+  // Build self-check (guide/build.sh loads guide.html#check): report overflowing pages.
+  if (location.hash === "#check") {
+    const pages = [...document.querySelectorAll(".page")];
+    const bad = pages.map((p, i) => (p.scrollHeight > p.clientHeight + 1 ? i + 1 : 0)).filter(Boolean);
+    document.body.setAttribute("data-pages", pages.length);
+    document.body.setAttribute("data-overflow", bad.join(",") || "none");
+  }
+</script>
+</body>
+</html>

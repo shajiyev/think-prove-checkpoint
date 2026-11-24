@@ -31,3 +31,17 @@ Append-only. Newest at the bottom. Never edit past entries — add a new one tha
 
 ## 2026-11-24 — Only real experience in the text
 **Why:** credibility. The "why" comes from real decisions (rejecting claude-mem and gsd-core, user makes every commit); the worked example is labeled as an illustration.
+
+## 2026-11-24 — The PDF is the installer: hand it to your AI agent
+**Decision:** the primary install path is giving the PDF to your own agent and setting it up in
+conversation (tailoring questions, changes shown first, backups, a revert note). The files are
+in an appendix, generated from `framework/` at build time. The repo is optional (scripts + tests).
+**Why:** agents read PDFs, so the "copying from a PDF breaks formatting" problem behind the
+2026-11-23 distribution decision no longer applies; one shareable file is enough to adopt the
+workflow, and tailoring by conversation fits readers using other agents (Codex, …).
+**Alternatives considered:** describe the rules only and let the agent write its own files
+(every reader gets a different workflow); keep manual setup steps (more friction).
+**Supersedes:** the "why" of 2026-11-23 — Distribution: PDF + public GitHub repo (both still ship).
+
+## 2026-11-24 — Cover stays as approved; "Hand it to your agent" lives on page 00
+**Why:** the user approved the cover as is; page 00 is the first page a LinkedIn reader swipes to.

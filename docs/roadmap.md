@@ -4,8 +4,8 @@
 _Last updated: 2026-11-24_
 - **Done:** design, project setup, specs, plans (`docs/plans/installer.md`, `docs/plans/guide.md`);
   **M2 complete:** framework payload, `install.sh`, `uninstall.sh` (24/24 tests pass), README + LICENSE.
-- **In progress:** M3 — guide Task G1 (style system, self-checking build, cover page for look approval).
-- **Next:** G2–G6 pages in batches, then G7 publish prep after the GitHub repo exists.
+- **In progress:** M3 — G1 done (cover approved). Spec changed: the PDF is the installer (hand it to your agent); plan revised (G2 appendix pipeline … G8 publish).
+- **Next:** G2 appendix pipeline; G3–G7 pages; G8 README + final build; user makes the repo public.
 
 ## Milestones
 ### M1 — Foundation

@@ -1,8 +1,10 @@
 # Vision
 
 ## What we're building
-A ~23-page PDF guide, **"Think · Prove · Checkpoint"**, plus a public GitHub repo with the
-exact files and scripts to install (and uninstall) the workflow.
+A ~30-page PDF guide, **"Think · Prove · Checkpoint"**, that is also the installer: hand it
+to your own AI agent (Claude Code, Codex, …) and it sets the workflow up with you in
+conversation, tailored to you. A public GitHub repo holds the same files plus scripts and
+tests, for technical readers.
 
 ## Why
 Most people use Claude Code in a way where it forgets everything between sessions,
@@ -17,7 +19,9 @@ skills) and memory (plain docs in git). The guide shares it, and shows how I wor
 
 ## Goals
 - A reader can understand the whole system from the PDF alone.
-- A reader can install it in ~15 minutes, and fully revert it.
+- A reader can install it from the PDF alone, by chatting with their agent, tailor it, and
+  fully revert it later, even in a new session.
+- No manual steps needed; the repo is optional.
 - The repo itself is evidence: built with the workflow, history visible.
 
 ## Non-goals

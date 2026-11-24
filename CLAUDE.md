@@ -44,10 +44,10 @@ technical emphasis — **this repo is built with the workflow it describes.**
 | Implementation plan | `docs/plans/<feature>.md` |
 
 ## Commands
-- Build PDF: `guide/build.sh` (not built yet)
-- Test scripts: `tests/test_scripts.sh` (not built yet)
+- Build PDF: `guide/build.sh` (exit 0 = no overflow, page count matches)
+- Test scripts: `tests/test_scripts.sh`
 
 ## Project-specific checkpoint items
-- If `guide/src/` changed: rebuild the PDF and re-check the page previews.
+- If `guide/src/` changed: run `guide/build.sh` (must exit 0) and read the changed pages in the PDF.
 - If the author's global files changed: re-sync `framework/`.
 - The user creates the GitHub repo and pushes; Claude never does.
