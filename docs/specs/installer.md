@@ -30,8 +30,9 @@ author's live `~/.claude/CLAUDE.md` and `~/.claude/templates/`, except that the 
 **`README.md`** mirrors the guide: what it is + PDF link; two ways to use it (read it, or hand it
 to your agent with the PDF's own prompt) + the compatibility warning; what the agent does; make it
 yours (the 6 questions, extend, undo prompt); never stop researching; for technical readers (one
-paragraph: `framework/`, the scripts, the build, tests); credits; license linked to `LICENSE`.
-No manual setup steps.
+paragraph: `framework/`, the scripts, the build, tests, then an optional "Prefer to install it by
+hand?" subsection with the script steps, revert and what gets installed); credits; license
+linked to `LICENSE`. The agent path stays the recommended one.
 
 ## Out of scope
 - Installing or removing plugins from the script (`/plugin` commands are run by the user inside Claude Code).
@@ -48,8 +49,8 @@ No manual setup steps.
 - `framework/global-CLAUDE.md`, `framework/templates/` (8 files) — copied from the author's live `~/.claude/`
 - `scripts/install.sh` — refuse if marker exists → move existing files to `*.backup-<ts>` → copy `framework/` → write marker → print plugin commands
 - `scripts/uninstall.sh` — refuse without marker → move installed files to `*.removed-<ts>` → restore backups from the marker → remove marker → print plugin commands
-- `README.md` — mirrors the guide (agent path only, same prompts and questions as the PDF); scripts
-  mentioned for technical readers, not as setup steps; credits with the author's LinkedIn; license link
+- `README.md` — mirrors the guide (agent path only, same prompts and questions as the PDF); manual
+  script install kept as an optional subsection for technical readers; credits with the author's LinkedIn; license link
 - `LICENSE` — MIT
 - `tests/test_scripts.sh` — harness (`fresh_home`, `check`, `refuses`, `snapshot`, `has_glob`) + payload, install and uninstall checks (24 total, all 5 spec cases)
 

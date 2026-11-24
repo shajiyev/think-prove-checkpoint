@@ -10,5 +10,5 @@ Status: `planned` · `in progress` · `done` · `dropped`
 | Framework payload (`framework/`) | done | `specs/installer.md` | From live `~/.claude/`; agent pronouns marked for readers |
 | Install script | done | `specs/installer.md` | Backup first, never silent overwrite |
 | Uninstall script | done | `specs/installer.md` | Restores backup |
-| README | done | `specs/installer.md` | Mirrors the guide: agent path only; scripts mentioned for technical readers |
+| README | done | `specs/installer.md` | Mirrors the guide (agent path first); optional manual install for technical readers |
 | LinkedIn carousel teaser | dropped (for now) | — | Possible later, separately |

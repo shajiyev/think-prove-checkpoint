@@ -68,6 +68,29 @@ It is also built with the workflow it describes: see [`CLAUDE.md`](CLAUDE.md) an
   appendix file that doesn't match its source byte for byte.
 - `tests/test_guide.sh` and `tests/test_scripts.sh` run the build and installer tests.
 
+### Prefer to install it by hand? (Claude Code, macOS / Linux)
+The agent path above is the recommended one: it checks your setup for conflicts and tailors the
+files to you. If you'd rather do it yourself:
+
+1. **Clone:** `git clone https://github.com/shajiyev/think-prove-checkpoint.git && cd think-prove-checkpoint`
+2. **Install the files:** `bash scripts/install.sh`
+   Your existing `~/.claude/CLAUDE.md` and `~/.claude/templates/` are moved to `*.backup-<timestamp>` first.
+3. **Install the plugin** (in your shell, or the same commands with `/plugin` inside Claude Code):
+   `claude plugin marketplace add obra/superpowers-marketplace`
+   `claude plugin install superpowers@superpowers-marketplace`
+4. **Start a project:** open Claude Code in a repo and say **"set up the project"**.
+
+**Revert:**
+1. `bash scripts/uninstall.sh` (installed files are moved to `*.removed-<timestamp>`, your backups restored)
+2. `claude plugin uninstall superpowers@superpowers-marketplace`
+   `claude plugin marketplace remove superpowers-marketplace`
+3. Projects' `CLAUDE.md` and `docs/` are plain files: keep or delete them.
+
+| From | To |
+|---|---|
+| `framework/global-CLAUDE.md` | `~/.claude/CLAUDE.md` |
+| `framework/templates/` (8 files) | `~/.claude/templates/` |
+
 ## Credits
 - The four core principles: Andrej Karpathy's observations on LLM coding pitfalls, as packaged
   in [andrej-karpathy-skills](https://github.com/multica-ai/andrej-karpathy-skills).
