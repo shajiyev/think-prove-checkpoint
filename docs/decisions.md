@@ -102,3 +102,9 @@ responsibility to keep researching skills, plugins, tools and ways of working wi
 and to keep adding and removing things from this workflow (research → try → keep or cut).
 **Why:** the workflow is a snapshot of one person's loop, not a finished product; the author wants
 readers to own and evolve theirs. Unnumbered so the approved cover's contents table stays accurate.
+
+## 2026-11-24 — Audience named: solo developers
+**Decision:** the README tagline, page 00's lead and the LinkedIn post say the workflow is for solo
+developers. The cover is unchanged.
+**Why:** the workflow assumes one person who reviews every change and makes every commit; naming the
+audience sets the right expectations. Teams can adapt it, but it isn't designed for them.

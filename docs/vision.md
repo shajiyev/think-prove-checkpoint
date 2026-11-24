@@ -13,7 +13,7 @@ This workflow fixes that with three layers: principles (Karpathy), process (supe
 skills) and memory (plain docs in git). The guide shares it, and shows how I work.
 
 ## Users
-- Developers who know the basics of Claude Code and want a repeatable workflow.
+- Solo developers who know the basics of Claude Code (or another agent) and want a repeatable workflow.
 - LinkedIn readers (recruiters, peers): it shows project management with a technical
   emphasis, backed by this repo's own roadmap, decisions, specs and plans.
 

@@ -103,3 +103,4 @@ ol.steps li strong, .card strong { color: var(--ink); }
 .agent .lead { margin-bottom: 6mm; }
 .repo { display: inline-block; margin-top: 1.5mm; font-family: var(--mono); font-weight: 800; color: var(--accent); white-space: nowrap; text-decoration: none; }
 .link { color: var(--accent); font-weight: 600; text-decoration: none; border-bottom: 1px solid var(--accent); }
+.callout p.sub { margin-top: 1.5mm; font-size: 10.5pt; font-weight: 400; color: var(--ink-2); }

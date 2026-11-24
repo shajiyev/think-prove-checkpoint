@@ -1,8 +1,8 @@
 # Think · Prove · Checkpoint
 
-**Claude forgets. Git doesn't.** A small, structured way of building with AI agents: principles that
-stop the guessing, skills that demand proof, and project memory that lives in git, where you can
-read it, review it and roll it back.
+**Claude forgets. Git doesn't.** A small, structured way of building software with AI agents, for
+solo developers: principles that stop the guessing, skills that demand proof, and project memory
+that lives in git, where you can read it, review it and roll it back.
 
 ### **[Download the practical guide (PDF)](guide/think-prove-checkpoint.pdf)**
 
@@ -57,12 +57,21 @@ add what helps, remove what doesn't. Research → try → keep or cut, then star
 Places to start: `/plugin` → Discover in Claude Code,
 [anthropics/skills](https://github.com/anthropics/skills), [agentskills.io](https://agentskills.io).
 
+## Built with this workflow
+This repo is the proof. I built this structured system over the last months while developing my
+own projects with AI agents, then used the very same system to build this small project, from the
+first spec to the final PDF. Every step is public:
+- [`docs/roadmap.md`](docs/roadmap.md): where the project stood at each checkpoint
+- [`docs/decisions.md`](docs/decisions.md): every decision, dated, with the why
+- [`docs/specs/`](docs/specs/) and [`docs/plans/`](docs/plans/): what was designed, and how it was built
+- The [commit history](https://github.com/shajiyev/think-prove-checkpoint/commits/main): one
+  commit per checkpoint, prepared by the agent and made by me
+
 ## For technical readers
 This repo has the same files as the guide's appendix (`framework/`), plus
 `scripts/install.sh` and `scripts/uninstall.sh` for Claude Code (they back up first, and are
 tested against a throwaway home folder), and the build that generated the PDF (`guide/`).
-It is also built with the workflow it describes: see [`CLAUDE.md`](CLAUDE.md) and
-[`docs/`](docs/) for its roadmap, decisions, specs and plans.
+The project's own memory starts at [`CLAUDE.md`](CLAUDE.md).
 
 - `guide/build.sh` builds the PDF and fails on any page overflow, page-count mismatch, or
   appendix file that doesn't match its source byte for byte.

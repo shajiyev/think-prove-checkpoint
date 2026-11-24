@@ -17,8 +17,8 @@ headed "Appendix · For your agent":
 
 | # | Page | Content |
 |---|---|---|
-| — | Cover | Title, subtitle, author credit, big idea "Claude forgets. Git doesn't.", contents table. Kept as approved in G1, except the label "A field guide" → "A practical guide" (author's request, 2026-11-24). |
-| 00 | Start here | Two ways to use this PDF, side by side: read it (01–21), or hand it to your AI agent with the copy-paste prompt; a **compatibility warning** (it can clash with your current setup, so the agent analyses it first); the appendix is written for the agent |
+| — | Cover | Title, subtitle, author credit, big idea "Claude forgets. Git doesn't.", contents table. Kept as approved in G1, except the label "A field guide" → "A practical guide" and "strict" → "structured" in the lead; top-right label "Solo dev · AI-assisted workflow" and lead "…building software with AI agents"; "The whole idea": the tagline on its own line, then "Your agent's memory lives in plain files in your repo, not in the chat." (author's requests, 2026-11-24). |
+| 00 | Start here | Lead names the audience: a solo developer's workflow. Two ways to use this PDF, side by side: read it (01–21), or hand it to your AI agent with the copy-paste prompt; a **compatibility warning** (it can clash with your current setup, so the agent analyses it first); the appendix is written for the agent |
 | 01 | The problem | 4 failures: forgets between sessions · guesses silently · "done" without proof · memory you can't review |
 | 02 | The stack | Diagram: Principles (Karpathy) → Process (superpowers) → Memory (docs in git) |
 | 03 | Principles | Karpathy's 4 rules, credited |
