@@ -6,7 +6,8 @@ losing a file they had before.
 
 ## Behavior
 **`framework/`** contains `global-CLAUDE.md` and `templates/` (8 files), copied from the
-author's live `~/.claude/CLAUDE.md` and `~/.claude/templates/`.
+author's live `~/.claude/CLAUDE.md` and `~/.claude/templates/`, except that the reader copy of
+`global-CLAUDE.md` marks the agent's pronouns "(the agent)".
 
 **`scripts/install.sh`**
 1. Refuses to run if the workflow is already installed (marker file present).

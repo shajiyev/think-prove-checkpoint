@@ -19,6 +19,8 @@
 html, body {
   margin: 0; background: var(--paper); color: var(--ink); font-family: var(--sans);
   -webkit-print-color-adjust: exact; print-color-adjust: exact;
+  /* No ligatures: they change the PDF's text layer ("|---|" would extract as "|--"). */
+  font-variant-ligatures: none; font-feature-settings: "liga" 0, "calt" 0;
 }
 body { counter-reset: pg; }
 
@@ -83,3 +85,21 @@ ol.steps li::before { content: counter(st, decimal-leading-zero); position: abso
 .cover h1 { font-size: 48pt; margin-top: 10mm; }
 .cover .callout { margin-top: auto; }
 .byline { font-family: var(--mono); font-size: 9pt; letter-spacing: .08em; color: var(--ink); margin: 0 0 12mm; }
+.appendix .top { margin-bottom: 6mm; }
+.appendix .file-head { font-family: var(--mono); font-weight: 800; font-size: 8pt; line-height: 1.4; color: var(--ink); margin: 0 0 1.5mm; }
+.appendix pre.file { margin: 0 0 4mm; padding: 3mm 4mm; background: var(--card); border: 1px solid var(--line); border-radius: 2mm; font-family: var(--mono); font-weight: 500; font-size: 7.2pt; line-height: 1.42; color: var(--ink); white-space: pre; }
+
+/* Content pages (G3+) */
+.card h3 { margin-bottom: 1.5mm; }
+.flow .step h3 { font-size: 9.5pt; margin: 0 0 1mm; }
+.flow.tight .step { padding: 3mm 2.5mm; }
+.flow.tight .step p:not(.label) { font-size: 8.3pt; }
+.credit { border-left: 2px solid var(--accent); padding: 0 0 0 4mm; margin: 0 0 7mm; font-size: 9.5pt; }
+.note { font-size: 8.8pt; color: var(--muted); margin: 0 0 6mm; }
+.note code, .credit code { font-size: .92em; }
+ol.steps li strong, .card strong { color: var(--ink); }
+.from5 { counter-reset: st 4; }
+.agent ol.steps li { font-size: 9.2pt; line-height: 1.5; padding-bottom: 2.4mm; }
+.agent .lead { margin-bottom: 6mm; }
+.repo { display: inline-block; margin-top: 1.5mm; font-family: var(--mono); font-weight: 800; color: var(--accent); white-space: nowrap; text-decoration: none; }
+.link { color: var(--accent); font-weight: 600; text-decoration: none; border-bottom: 1px solid var(--accent); }

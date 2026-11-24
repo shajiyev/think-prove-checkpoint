@@ -1,6 +1,6 @@
 # Global Working Protocol
 
-This file defines how I (Claude) work across **all** projects. It is loaded in every
+This file defines how I (the agent) work across **all** projects. It is loaded in every
 session, everywhere — so it stays lean. Project-specific facts live in each repo's own
 `CLAUDE.md`, not here.
 
@@ -68,7 +68,7 @@ docs on demand — never load all of them at once.
   folder only once it has ~7+ files or its filenames stop being self-explanatory.
 
 ## Session-start protocol
-When I open a session in a project:
+When I (the agent) open a session in a project:
 1. Read the project's `CLAUDE.md`.
 2. Read `docs/roadmap.md` → "Current status" to see where we left off.
 3. Confirm the current state with the user before making changes.
@@ -88,12 +88,12 @@ When the user says **"checkpoint"**, **"commit"**, or a task is finished:
    Doc-only or trivial changes: skip the wait, but give a short checklist of what
    changed and what they could check, so they can verify if they want.
 7. **Prepare the commit, then stop:** list the files and give the exact commit message.
-   **The user makes every commit** — I never run `git add`/`commit`/`push`.
+   **The user makes every commit** — I (the agent) never run `git add`/`commit`/`push`.
 
 Update docs **deliberately at checkpoints** — never silently mid-work.
 
 If we've just finished a meaningful unit of work and the user hasn't asked, **proactively
-suggest it** — "We finished X; want me to checkpoint and prepare the commit?"
+suggest it** — "We finished X; want me (the agent) to checkpoint and prepare the commit?"
 
 ## Private (uncommitted) project memory — opt-in
 When the user wants the planning files private (e.g. graded/shared repos):

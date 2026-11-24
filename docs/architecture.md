@@ -10,15 +10,18 @@
 |---|---|
 | `framework/` | The installable payload: `global-CLAUDE.md` → `~/.claude/CLAUDE.md`, `templates/` → `~/.claude/templates/` |
 | `scripts/` | `install.sh` (backup, then copy) and `uninstall.sh` (restore backup, remove templates) |
-| `tests/` | `test_scripts.sh`: install/uninstall cases, each in a fresh `HOME=$(mktemp -d)` |
+| `tests/` | `test_scripts.sh`: install/uninstall in a throwaway HOME; `test_guide.sh`: build + appendix fidelity + PDF text layer (`pdf_text.swift`) |
 | `guide/src/` | `guide.html` (content) + `styles.css` (tokens, page grid, components) |
-| `guide/build.sh` | Builds `guide/think-prove-checkpoint.pdf` from `guide/src/` |
+| `guide/assemble.sh` | Expands appendix markers into pages holding `framework/` files verbatim |
+| `guide/build.sh` | Builds and self-checks `guide/think-prove-checkpoint.pdf` |
 | `docs/` | This project's own memory, following the workflow it documents |
 
 ## Data flow
 Author's live `~/.claude/` files → copied into `framework/` → readers run
 `scripts/install.sh` → files land in the reader's `~/.claude/`.
-`guide/src/` → `build.sh` → PDF → shared on LinkedIn and linked from the README.
+`guide/src/guide.html` + `framework/` files → `guide/assemble.sh` (appendix pages, verbatim)
+→ `guide/build.sh` → PDF → self-check (overflow, page count, appendix fidelity) → shared on
+LinkedIn. Readers hand the PDF to their agent, which installs from the appendix.
 
 ## Patterns & conventions
 - Design tokens (colors, fonts, spacing) live on `:root` in `styles.css`.

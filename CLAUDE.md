@@ -18,8 +18,12 @@ technical emphasis — **this repo is built with the workflow it describes.**
 
 ## Conventions
 - `framework/` is copied **from** the author's live `~/.claude/CLAUDE.md` and
-  `~/.claude/templates/`; never edit only one side.
-- No personal data in committed files beyond the author credit (name, university).
+  `~/.claude/templates/`; never edit only one side. **One deliberate exception:** in
+  `framework/global-CLAUDE.md`, pronouns that mean the agent are marked "(the agent)" for
+  readers (lines 3, 71, 91, 96). The author's live file keeps its own wording; re-apply the
+  marks after any re-sync (`docs/decisions.md`, 2026-11-24).
+- No personal data in committed files beyond the author credit (name, university) and the
+  LinkedIn link on the closing page (author's request). Never an email.
 - Scripts never overwrite anything without a timestamped backup first.
 - Guide colors and fonts are CSS tokens on `:root`; don't hardcode them in pages.
 - Never invent experiences for the author. Illustrative examples are labeled as such.
@@ -46,6 +50,7 @@ technical emphasis — **this repo is built with the workflow it describes.**
 ## Commands
 - Build PDF: `guide/build.sh` (exit 0 = no overflow, page count matches)
 - Test scripts: `tests/test_scripts.sh`
+- Test guide build: `tests/test_guide.sh` (fixtures + PDF text layer via macOS PDFKit)
 
 ## Project-specific checkpoint items
 - If `guide/src/` changed: run `guide/build.sh` (must exit 0) and read the changed pages in the PDF.

@@ -22,7 +22,7 @@
 - The PDF holds no manual setup steps; the agent path is primary, the repo is for technical readers.
 - `framework/` is the single source for appendix text; never paste framework text into `guide.html` by hand (excerpts on pages 05/08 excepted).
 - Agent-specific facts (paths, plugin support) are verified from official docs before they're written.
-- Author credit: "Sabir Hajiyev · IT student, ADA University"; closing page adds "12 Anthropic Academy certificates". No contact data.
+- Author credit: "Sabir Hajiyev" on the cover (name only); the closing page has the author bio (project-manager angle, no certificate count) ending "More about me on LinkedIn" (link). No email.
 - No text, layout details or branding copied from the original solo-dev guide.
 - Plugin commands shown both ways (`claude plugin …` shell, `/plugin …` in-app).
 - `guide/build.sh` must exit 0 before any checkpoint.
@@ -264,6 +264,8 @@ git commit -m "Add guide style system, self-checking build and cover page"
 
 ## Part 2: The PDF is the installer (spec change 2026-11-24)
 
+> G2 done. G3–G7 were executed as one batch at the user's request (one checkpoint, one commit).
+
 G1 as built differs from its code above in two places (recorded in the spec's Gotchas):
 component body rules use `p:not(.label)`, and the cover is a flex column with the callout
 pushed to the bottom.
@@ -321,6 +323,7 @@ printf '%s\n' '<script>alert(1)</script>' 'a & b &amp; c' '</pre> is just text' 
   "\"double\" and 'single' quotes" 'unicode: · → —' > "$TMP/escape.md"
 fixture escape "$TMP/escape.md"
 check "markup characters round-trip" build escape
+check "...and the file was really checked" logged escape "appendix: 1 files"
 
 printf 'one\ntwo\nthree\nfour\nfive\n\nseven\neight\n' > "$TMP/blank.md"
 fixture blank "$TMP/blank.md"
@@ -501,7 +504,7 @@ echo "ok: $OUT"
     ```
   - `.gitignore`: add `guide/src/*.gen.html`.
 
-- [ ] **Step 7: Run tests, expect pass** — `bash tests/test_guide.sh` → `13 passed, 0 failed`; `bash tests/test_scripts.sh` still `24 passed, 0 failed`. If a real-guide page overflows, lower `APPENDIX_LINES`' default in `assemble.sh` (not the CSS), and say so at the checkpoint.
+- [ ] **Step 7: Run tests, expect pass** — `bash tests/test_guide.sh` → `17 passed, 0 failed` (incl. the PDF text-layer check, which needs swift/PDFKit and is skipped elsewhere); `bash tests/test_scripts.sh` still `24 passed, 0 failed`. If a real-guide page overflows, lower `APPENDIX_LINES`' default in `assemble.sh` (not the CSS), and say so at the checkpoint.
 
 - [ ] **Step 8: Read the appendix like an agent** — Read the built PDF: each file heading shows target path + line range; text keeps line breaks and indentation; nothing clipped on the right.
 
@@ -518,15 +521,15 @@ git commit -m "Generate the guide appendix from framework/ and verify it byte fo
 **Files:** Modify `guide/src/guide.html` (sections after the cover, before the appendix marker).
 
 - [ ] **Step 1: Write the five pages** (page markup pattern above)
-  - **00 · Start here** — h1 "Two ways to <hl>use</hl> this". `.grid` 2 cards: *Read it* ("Pages 01–21 explain the workflow: what goes wrong without it, the three layers, and how a feature moves from idea to commit."); *Hand it to your agent* ("Give this PDF to Claude Code, Codex or any agent that reads PDFs and edits files, and paste the prompt below. It asks you a few questions, shows every change first, and backs up what it replaces."). `.copy` labeled "Copy-paste · to your agent" with the setup prompt (below). Small line: "The appendix at the back is written for your agent. You don't need to read it."
+  - **00 · Start here** — h1 "Two ways to <hl>use</hl> this". `.grid` 2 cards: *Read it* ("Pages 01–21 explain the workflow: what goes wrong without it, the three layers, and how a feature moves from idea to commit."); *Hand it to your agent* ("Give this PDF to Claude Code, Codex or any agent that reads PDFs and edits files, and paste the prompt below. It asks you a few questions, shows every change first, and backs up what it replaces."). `.copy` labeled "Copy-paste · to your agent" with the setup prompt (below). `.callout` "Before you install": "It may not fit your current setup. From my own experience: other memory tools, workflow frameworks or global rules can clash with it. So the prompt asks your agent to check your setup first and tell you what conflicts, before it changes anything." Small line: "The appendix at the back is written for your agent. You don't need to read it."
   - **01–04** (problem, stack, principles, toolkit):
     - **01 · The problem** — h1 "What goes <hl>wrong</hl>". `.grid` of 4 cards: *It forgets* (every session starts from zero; you re-explain the project), *It guesses* (fills gaps silently instead of asking), *It says "done"* (without running anything that proves it), *Its memory is a black box* (stored somewhere you can't read, review or roll back). `.callout` "The fix": "Not a bigger context window. A smaller, honest memory, and a process that makes Claude prove its work."
     - **02 · The stack** — h1 "Three <hl>layers</hl>". `.flow`: Principles (how to think: Karpathy's 4 rules) → Process (how to work: superpowers skills) → Memory (what to remember: docs in git). `table.t` Layer / Lives in / Loaded: Principles → `~/.claude/CLAUDE.md` → every session; Process → superpowers plugin → when a skill applies; Memory → `CLAUDE.md` + `docs/` in each repo → on demand.
     - **03 · Principles** — h1 "Four <hl>rules</hl>". 4 cards (Think before coding · Simplicity first · Surgical changes · Goal-driven execution), one-line meaning each from `framework/global-CLAUDE.md`. Credit: "From Andrej Karpathy's observations on how LLMs go wrong when coding, packaged as andrej-karpathy-skills. I wrote them straight into my global file instead of running the plugin."
-    - **04 · What I run** — h1 "My <hl>toolkit</hl>". `table.t` Plugin / Status / Why: superpowers (core, on: the skills that run the process); andrej-karpathy-skills (off: its rules live in my global file); claude-mem (tried, dropped: memory I couldn't read or review); gsd-core (tried, dropped: kept the simpler file-based process); custom status line (personal, not part of the workflow). `.callout` "What I learned": "The best memory system was the most boring one: Markdown files in git."
+    - **04 · What I run** — h1 "Built on other people's <hl>skills</hl>". Lead: "This workflow stands on skills other people wrote: superpowers by Jesse Vincent and Andrej Karpathy's principles (andrej-karpathy-skills). I combined them and added the memory layer." `table.t` Plugin / Status / Why: superpowers (core, on: the skills that run the process); andrej-karpathy-skills (rules baked into my global file); claude-mem (tried, dropped: memory I couldn't read or review); gsd-core (tried, dropped: kept the simpler file-based process). `.callout` "Go explore": "There are many useful skills out there, far more than these. Research them, try the ones that fit your stack and your habits, and add them to this workflow. Read a skill before you install it: it runs with your agent's permissions." Small line naming where to look (sources verified before writing: e.g. the Claude Code plugin marketplace via `/plugin`, Anthropic's skills repo, community lists).
 
   **Setup prompt** (identical on pages 00 and 17):
-  > I'm giving you a PDF called "Think · Prove · Checkpoint". Set its workflow up for me by following its appendix, "For your agent": ask me the questions one at a time, show me every change before you make it, and back up anything you replace.
+  > I'm giving you a PDF called "Think · Prove · Checkpoint". Set its workflow up for me by following its appendix, "For your agent". First analyse my current setup and tell me what would overlap or conflict with it, and what you recommend. Then ask me the questions one at a time, show me every change before you make it, and back up anything you replace.
 
 - [ ] **Step 2: Build + tests** — `guide/build.sh` exit 0; `bash tests/test_guide.sh` 0 failed. Read pages 2–6.
 - [ ] **Step 3: Checkpoint (user commits)** — user skims pages 2–6 (especially page 00). Docs: roadmap.
@@ -600,33 +603,35 @@ git commit -m "Guide: pages 14-16 (session start, safety, worked example)"
 
 - [ ] **Step 1: Verify agent facts** — from official docs (web search, then the pages themselves): Codex CLI's global instructions file path; which agents superpowers supports and how it's installed on each (superpowers README). Record what was verified, with source URLs, in `docs/decisions.md`. Anything unverified → A1 says "ask the user where your global instructions live". Also re-run `claude plugin --help` / `claude plugin marketplace --help`.
 - [ ] **Step 2: Write pages 17–21 and closing** (before the appendix)
-  - **17 · Hand it to your agent** — h1 "Install by <hl>conversation</hl>". Lead: "No steps to follow. Your agent reads this PDF, asks you a few questions, and sets everything up with you." `.copy` "Copy-paste · to your agent": the setup prompt (identical to page 00). `.flow` 5 steps: Reads the PDF → Asks you 6 questions → Shows every change → Backs up, then writes → You say "set up the project". Small line: "Works with Claude Code, Codex, or any agent that reads PDFs and edits files."
-  - **18 · Tailor it, or take it back** — h1 "Make it <hl>yours</hl>". `table.t` Question / Default: the 6 tailoring questions from the spec. `.copy` "Copy-paste · to undo it": "Undo the Think · Prove · Checkpoint setup: find the think-prove-checkpoint.install note, restore my backups, and tell me exactly what you changed." `.callout`: "The agent leaves a note listing every backup it made, so any later session can undo the setup. Claude forgets. The note doesn't."
+  - **17 · Hand it to your agent** — h1 "Install by <hl>conversation</hl>". Lead: "No steps to follow. Your agent reads this PDF, asks you a few questions, and sets everything up with you." `.copy` "Copy-paste · to your agent": the setup prompt (identical to page 00). `.flow` 6 steps: Reads the PDF → Checks your setup for conflicts → Asks you 6 questions → Shows every change → Backs up, then writes → You say "set up the project". `.callout` "Why it checks first": "Two memory systems or two planning processes in one agent fight each other; I've seen this workflow clash with other setups. Your agent can see your setup, this PDF can't, so it reports overlaps and conflicts with a recommendation for each (merge, turn something off, skip a part, or don't install) and changes nothing until you decide." Small line: "Works with Claude Code, Codex, or any agent that reads PDFs and edits files."
+  - **18 · Tailor it, or take it back** — h1 "Make it <hl>yours</hl>". `table.t` Question / Default: the 6 tailoring questions from the spec. `.card` "Extend it": "This is a base, not a fence. Ask your agent: \"Find skills that fit how I work and explain what each would add.\" It reads them first and installs nothing without you." `.copy` "Copy-paste · to undo it": "Undo the Think · Prove · Checkpoint setup: find the think-prove-checkpoint.install note, restore my backups, and tell me exactly what you changed." `.callout`: "The agent leaves a note listing every backup it made, so any later session can undo the setup. Claude forgets. The note doesn't."
   - **19 · Cheat sheet** — h1 "The whole thing on one <hl>page</hl>". `.grid.three`: *Trigger words* ("set up the project", "checkpoint" / "commit"); *Per feature* (brainstorm → spec → plan → task loop → finish); *Every checkpoint* (the 7 steps, compressed).
-  - **20 · Prompts** — h1 "Prompts to <hl>copy</hl>". 3 `.copy` boxes: Session kickoff ("Read CLAUDE.md and the roadmap's Current status. Summarise where we are and what's next before touching anything."); Bug report (same as page 12, compact); Wrap-up ("Checkpoint: update the docs, then give me the files and the exact commit message.").
+  - **20 · Prompts** — h1 "Prompts I <hl>use</hl>". 3 `.copy` boxes: Session kickoff ("Read CLAUDE.md and the roadmap's Current status. Summarise where we are and what's next before touching anything."); Bug report (same as page 12, compact); Wrap-up ("Checkpoint: update the docs, then give me the files and the exact commit message.").
   - **21 · Built with this workflow** — h1 "This guide is the <hl>proof</hl>". Lead: the repo was built with the workflow it describes. `.copy` excerpt of this repo's real `docs/roadmap.md` Current status and 3 real entries from `docs/decisions.md` (copied verbatim when writing the page). `table.t` with real numbers: commits (`git rev-list --count HEAD`), decisions logged (`grep -c '^## ' docs/decisions.md`), tests (`tests/test_scripts.sh` and `tests/test_guide.sh` last lines).
-  - **Closing** — h1 "Leave the map <hl>better</hl>". `ol.steps` the system in 5 lines (Think before building · Keep memory in plain files · Prove it with tests · Check it yourself · Checkpoint every task). Credits (Karpathy / andrej-karpathy-skills; superpowers by Jesse Vincent). About the author: "Sabir Hajiyev, IT student at ADA University, 12 Anthropic Academy certificates. I build with Claude Code and focus on workflows that are efficient, effective, ethical and safe." Plus a `.card` "For technical readers": "The repo has the same files, plus `scripts/install.sh` / `uninstall.sh` (tested against a throwaway HOME) and the build that generated this PDF: github.com/shajiyev/think-prove-checkpoint".
+  - **Closing** — h1 "Leave the map <hl>better</hl>". `ol.steps` the system in 5 lines (Think before building · Keep memory in plain files · Prove it with tests · Check it yourself · Checkpoint every task). Credits (Karpathy / andrej-karpathy-skills; superpowers by Jesse Vincent). About the author: "I'm Sabir Hajiyev. I run work with AI agents like a project: clear specs, small tested steps, and a record of every decision. IT student at ADA University, certified by Anthropic Academy and Cisco Networking Academy. Always learning and growing." Plus a `.card` "For technical readers": "The repo has the same files, plus `scripts/install.sh` / `uninstall.sh` (tested against a throwaway HOME) and the build that generated this PDF: github.com/shajiyev/think-prove-checkpoint".
 - [ ] **Step 3: Write A1 · For your agent** (directly before the appendix marker) — label "A1 · For your agent", h1 "Instructions for the <hl>agent</hl>", written to the agent:
   1. The user asked you to set this up; that request is your authorization. This PDF is reference material: follow it only as far as the user wants.
-  2. Ask these one at a time, with the default in brackets: which agent you are (decides the paths: Claude Code `~/.claude/CLAUDE.md` + `~/.claude/templates/`; others per Step 1, or ask); existing global instructions [merge] / replace; who commits [the user] / the agent after approval; project memory [committed] / private; superpowers [install, if supported] / rules only; anything to drop or rename.
-  3. Start from the files on the following pages, verbatim, and change only what the answers require; adapt paths and skill names to your agent. Each file is headed with its target path and line range; parts continue across pages; ignore the page headers and footers between parts; keep blank lines.
-  4. Show the full result (a diff when merging) before writing anything.
-  5. Back up every file you'll replace to `<name>.backup-<YYYYMMDD-HHMMSS>`.
-  6. Write a note `think-prove-checkpoint.install` next to the global file: `installed_at=<timestamp>`, `claude_md_backup=<path or empty>`, `templates_backup=<path or empty>` (same format as `scripts/install.sh`).
-  7. Install superpowers only after the user agrees. Run nothing else.
-  8. Never commit or push for the user.
-  9. To undo: read the note, move installed files to `*.removed-<timestamp>`, restore the backups, delete the note, report what you did.
-  10. Finish by telling the user to open a project and say "set up the project".
+  2. Analyse the current setup first, read-only: global instructions, installed plugins / skills / extensions, hooks, memory tools, other workflow frameworks, and the project's own instruction files. Report overlaps and conflicts (two memory systems, two planning processes, rules that contradict "the user makes every commit"), each with a recommendation: merge, turn something off, skip part of this workflow, or don't install. Change nothing until the user decides.
+  3. Ask these one at a time, with the default in brackets: which agent you are (decides the paths: Claude Code `~/.claude/CLAUDE.md` + `~/.claude/templates/`; others per Step 1, or ask); existing global instructions [merge] / replace; who commits [the user] / the agent after approval; project memory [committed] / private; superpowers [install, if supported] / rules only; anything to drop or rename.
+  4. Start from the files on the following pages, verbatim, and change only what the answers require; adapt paths and skill names to your agent. Each file is headed with its target path and line range; parts continue across pages; ignore the page headers and footers between parts; keep blank lines. PDF text loses leading spaces: restore them (continuation lines of a numbered item are indented 3 spaces, of a bullet 2).
+  5. Show the full result (a diff when merging) before writing anything.
+  6. Back up every file you'll replace to `<name>.backup-<YYYYMMDD-HHMMSS>`.
+  7. Write a note `think-prove-checkpoint.install` next to the global file: `installed_at=<timestamp>`, `claude_md_backup=<path or empty>`, `templates_backup=<path or empty>` (same format as `scripts/install.sh`).
+  8. Install anything (superpowers, other skills) only after the user agrees. Run nothing else.
+  9. Never commit or push for the user.
+  10. After setup, offer to research other skills that fit how the user works; suggest a few with what each adds and its source; read a skill's files before recommending it; install nothing without approval.
+  11. To undo: read the note, move installed files to `*.removed-<timestamp>`, restore the backups, delete the note, report what you did.
+  12. Finish by telling the user to open a project and say "set up the project".
   If A1 needs two pages, change the marker to `A3:`.
 - [ ] **Step 4: Build + tests** — exit 0 / 0 failed. Read pages 19–end. Check repo paths exist: `grep -o 'scripts/[a-z_]*\.sh\|framework/[A-Za-z/_.-]*\|tests/[a-z_]*\.sh' guide/src/guide.html | sort -u | xargs ls`.
 - [ ] **Step 5: Dry run with a fresh agent** — nothing may be written:
 ```bash
 D="$(mktemp -d)"; cp guide/think-prove-checkpoint.pdf "$D/"
 before="$(cksum ~/.claude/CLAUDE.md; ls ~/.claude)"
-(cd "$D" && claude -p "I'm giving you think-prove-checkpoint.pdf (in this folder). Set its workflow up for me by following its appendix. DRY RUN: don't write, run or install anything. Instead list in order: the questions you'd ask me with defaults, every file you'd write or change (full paths), the backups you'd make, and the exact note you'd leave." --disallowedTools "Write Edit Bash NotebookEdit")
+(cd "$D" && claude -p "I'm giving you think-prove-checkpoint.pdf (in this folder). Set its workflow up for me by following its appendix. DRY RUN: don't write, run or install anything. Instead list in order: your analysis of my current setup (overlaps, conflicts, recommendations), the questions you'd ask me with defaults, every file you'd write or change (full paths), the backups you'd make, and the exact note you'd leave." --disallowedTools "Write Edit Bash NotebookEdit")
 [ "$before" = "$(cksum ~/.claude/CLAUDE.md; ls ~/.claude)" ] && echo "unchanged"
 ```
-Expected: the 6 questions with the right defaults, correct paths, backups before writes, the note in `install.sh`'s format; `unchanged`. If the agent misreads something, fix A1's wording and repeat.
+Expected: a setup analysis first (on the author's machine it should find this workflow and superpowers already installed and say so), then the 6 questions with the right defaults, correct paths, backups before writes, the note in `install.sh`'s format; `unchanged`. If the agent misreads something, fix A1's wording and repeat.
 - [ ] **Step 6: Checkpoint (user commits)** — hand check: the user reads the whole PDF once and, if they like, tries the agent path with their own agent (on a spare account or after backing up). Docs: spec Key files/Tests, features, decisions (verified agent facts), roadmap.
 ```bash
 git add guide/ docs/
