@@ -35,6 +35,29 @@ echo "# payload"
 check "framework/global-CLAUDE.md exists" test -s "$REPO_DIR/framework/global-CLAUDE.md"
 check "framework has 8 templates" test "$(count_files "$REPO_DIR/framework/templates")" = 8
 
+echo "# install: fresh home"
+fresh_home
+check "install succeeds with no ~/.claude" run_install
+check "CLAUDE.md is the framework file" cmp -s "$REPO_DIR/framework/global-CLAUDE.md" "$HOME/.claude/CLAUDE.md"
+check "8 templates installed" test "$(count_files "$HOME/.claude/templates")" = 8
+check "marker written" test -f "$HOME/.claude/think-prove-checkpoint.install"
+check "marker records no CLAUDE.md backup" grep -qx 'claude_md_backup=' "$HOME/.claude/think-prove-checkpoint.install"
+
+echo "# install: existing files are backed up"
+fresh_home
+mkdir -p "$HOME/.claude/templates"
+echo "my own rules" > "$HOME/.claude/CLAUDE.md"
+echo "my template"  > "$HOME/.claude/templates/mine.md"
+check "install succeeds over existing files" run_install
+check "old CLAUDE.md backed up" grep -qx "my own rules" "$(compgen -G "$HOME/.claude/CLAUDE.md.backup-*")"
+check "old templates backed up" test -f "$(compgen -G "$HOME/.claude/templates.backup-*")/mine.md"
+check "marker records the CLAUDE.md backup" grep -q '^claude_md_backup=.*CLAUDE.md.backup-' "$HOME/.claude/think-prove-checkpoint.install"
+
+echo "# install: refuses a second install"
+before="$(snapshot)"
+check "second install is refused" refuses run_install
+check "nothing changed" test "$before" = "$(snapshot)"
+
 echo
 echo "$PASS passed, $FAIL failed"
 [ "$FAIL" -eq 0 ]
