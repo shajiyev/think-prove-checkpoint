@@ -44,6 +44,8 @@ credits, license.
 - `framework/global-CLAUDE.md`, `framework/templates/` (8 files) — copied from the author's live `~/.claude/`
 - `scripts/install.sh` — refuse if marker exists → move existing files to `*.backup-<ts>` → copy `framework/` → write marker → print plugin commands
 - `scripts/uninstall.sh` — refuse without marker → move installed files to `*.removed-<ts>` → restore backups from the marker → remove marker → print plugin commands
+- `README.md` — what, setup (4 steps), revert (3 steps), what gets installed, tests, credits; clone URL filled in at M4
+- `LICENSE` — MIT
 - `tests/test_scripts.sh` — harness (`fresh_home`, `check`, `refuses`, `snapshot`, `has_glob`) + payload, install and uninstall checks (24 total, all 5 spec cases)
 
 ## Gotchas

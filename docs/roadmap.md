@@ -3,9 +3,9 @@
 ## Current status
 _Last updated: 2026-11-24_
 - **Done:** design, project setup, specs, plans (`docs/plans/installer.md`, `docs/plans/guide.md`);
-  installer Tasks 1–3 (framework payload, `install.sh`, `uninstall.sh`; 24/24 tests pass).
-- **In progress:** M2 — installer Task 4 (README + LICENSE).
-- **Next:** the guide (G1: style system + cover page for look approval).
+  **M2 complete:** framework payload, `install.sh`, `uninstall.sh` (24/24 tests pass), README + LICENSE.
+- **In progress:** M3 — guide Task G1 (style system, self-checking build, cover page for look approval).
+- **Next:** G2–G6 pages in batches, then G7 publish prep after the GitHub repo exists.
 
 ## Milestones
 ### M1 — Foundation
@@ -17,7 +17,7 @@ _Last updated: 2026-11-24_
 ### M2 — Installable framework
 - [x] `framework/` synced from the author's live files
 - [x] `install.sh` / `uninstall.sh`, tested in a throwaway HOME
-- [ ] README (what, setup, revert)
+- [x] README (what, setup, revert)
 
 ### M3 — The guide
 - [ ] Style system + build pipeline (one sample page approved)
