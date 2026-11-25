@@ -20,12 +20,14 @@
   </div>
   <table class="t">
     <tr><th>Part</th><th>What it covers</th></tr>
+    <tr><td>00</td><td>Start here: read it, or hand it to your agent</td></tr>
     <tr><td>01–02</td><td>The problem, and the three-layer stack that answers it</td></tr>
-    <tr><td>03–04</td><td>The principles, and the tools I actually run</td></tr>
+    <tr><td>03–04</td><td>The principles, and the skills it's built on</td></tr>
     <tr><td>05–08</td><td>Memory: the global file, project docs, living specs</td></tr>
     <tr><td>09–13</td><td>Process: brainstorm, plan, test, debug, checkpoint</td></tr>
     <tr><td>14–16</td><td>Session start, safety and ethics, a worked example</td></tr>
-    <tr><td>17–21</td><td>Setup, revert, cheat sheet, prompts, and proof it works</td></tr>
+    <tr><td>17–21</td><td>Install by conversation, tailor or undo, cheat sheet, prompts, and proof it works</td></tr>
+    <tr><td>A1–A8</td><td>For your agent: instructions and the files</td></tr>
   </table>
   <div class="foot"><span>Think · Prove · Checkpoint</span><span class="n"></span></div>
 </section>
@@ -36,8 +38,8 @@
   <h1>Two ways to <span class="hl">use</span> this</h1>
   <p class="lead">Read it to see how I work with Claude Code as a solo developer. Or hand it to your AI agent, and it will set the same workflow up with you, tailored to how you work.</p>
   <div class="grid">
-    <div class="card"><p class="label">Option 1</p><h3>Read it</h3><p>Pages 01–21 explain the workflow: what goes wrong without it, the three layers that fix it, and how a feature moves from idea to commit.</p></div>
-    <div class="card"><p class="label">Option 2</p><h3>Hand it to your agent</h3><p>Give this PDF to Claude Code, Codex or any agent that reads PDFs and edits files, and paste the prompt below. No steps to follow.</p></div>
+    <div class="card"><p class="label">Option 1</p><h3>Read it</h3><p>Sections 01–21 explain the workflow: what goes wrong without it, the three layers that fix it, and how a feature moves from idea to commit.</p></div>
+    <div class="card"><p class="label">Option 2</p><h3>Hand it to your agent</h3><p>Give this PDF to your agent and paste the prompt below. No steps to follow. Made for Claude Code; Codex and other agents that read PDFs and edit files can follow it too.</p></div>
   </div>
   <div class="copy">
     <p class="label">Copy-paste · to your agent</p>
@@ -62,6 +64,13 @@
     <div class="card"><h3>It says "done"</h3><p>Without running anything that proves it. "Should work now" is a prediction, not evidence.</p></div>
     <div class="card"><h3>Its memory is a black box</h3><p>Stored somewhere you can't read, review or roll back. You can't check what it "knows", or fix it when it's wrong.</p></div>
   </div>
+  <table class="t">
+    <tr><th>Without structure</th><th>With this workflow</th></tr>
+    <tr><td>One endless session you're afraid to close</td><td>Fresh sessions; the docs carry the memory</td></tr>
+    <tr><td>Re-explaining the project every time</td><td>The agent reads <code>CLAUDE.md</code> and the roadmap first</td></tr>
+    <tr><td>"Done" with nothing to show for it</td><td>Tests run, output seen, you check it by hand</td></tr>
+    <tr><td>Memory you can't see or fix</td><td>Plain files in git: read, review, roll back</td></tr>
+  </table>
   <div class="callout">
     <p class="label">The fix</p>
     <p>Not a bigger context window. A smaller, honest memory, and a process that makes the agent prove its work.</p>
@@ -98,7 +107,7 @@
   <div class="top"><span>Think · Prove · Checkpoint</span><span>03 · Principles</span></div>
   <p class="label">03 · Principles</p>
   <h1>Four <span class="hl">rules</span></h1>
-  <p class="lead">They come first because they shape every change, from a typo fix to a new feature. They bias toward caution over speed; for trivial tasks, judgment wins.</p>
+  <p class="lead">They come first because they shape every change, from a typo fix to a new feature. They bias towards caution over speed; for trivial tasks, judgement wins.</p>
   <div class="grid">
     <div class="card"><p class="label">Rule 1</p><h3>Think before coding</h3><p>State assumptions. If there are several interpretations, present them; don't pick silently. If something's unclear, stop and ask.</p></div>
     <div class="card"><p class="label">Rule 2</p><h3>Simplicity first</h3><p>The minimum code that solves the problem. No speculative features or abstractions. If a senior engineer would call it overcomplicated, simplify.</p></div>
@@ -117,7 +126,7 @@
   <div class="top"><span>Think · Prove · Checkpoint</span><span>04 · What I run</span></div>
   <p class="label">04 · What I run</p>
   <h1>Built on other people's <span class="hl">skills</span></h1>
-  <p class="lead">This workflow stands on skills other people wrote: superpowers by Jesse Vincent and Andrej Karpathy's principles. I combined them and added the memory layer.</p>
+  <p class="lead">This workflow stands on skills other people wrote: superpowers by Jesse Vincent and Andrej Karpathy's principles. I combined them and added the memory layer and the checkpoint routine.</p>
   <table class="t">
     <tr><th>Plugin</th><th>Status</th><th>Why</th></tr>
     <tr><td>superpowers</td><td>Core, on</td><td>The skills that run the process: brainstorming, planning, test-first, debugging, verification.</td></tr>
@@ -224,7 +233,7 @@ docs/
   <div class="copy">
     <p class="label">Template · spec.md (sections)</p>
 <pre>## Goal           what it does, and for whom
-## Behavior
+## Behaviour
 ## Out of scope
 ## Design         the approach chosen, and why
 ## Key files      kept current: the feature AS BUILT
@@ -264,7 +273,7 @@ docs/
     <tr><td>Test first</td><td><code>superpowers:test-driven-development</code></td><td>A failing test, then code that passes it</td></tr>
     <tr><td>Debug</td><td><code>superpowers:systematic-debugging</code></td><td>A root cause, and a test that reproduces it</td></tr>
     <tr><td>Verify</td><td><code>superpowers:verification-before-completion</code></td><td>Evidence: commands run, output seen</td></tr>
-    <tr><td>Finish</td><td><code>superpowers:requesting-code-review</code>, <code>finishing-a-development-branch</code></td><td>A reviewed merge or pull request</td></tr>
+    <tr><td>Finish</td><td><code>superpowers:requesting-code-review</code><br><code>superpowers:finishing-a-development-branch</code></td><td>A reviewed merge or pull request</td></tr>
   </table>
   <p class="credit">My global file changes one default: specs and plans are named <code>&lt;feature&gt;.md</code>, without date prefixes, so a feature always has exactly one of each.</p>
   <div class="foot"><span>Think · Prove · Checkpoint</span><span class="n"></span></div>
@@ -296,7 +305,7 @@ docs/
   <h1>Red, then <span class="hl">green</span></h1>
   <p class="lead">Tests are written before the code they test, and watched failing first. A test that has never failed hasn't proven anything.</p>
   <div class="flow">
-    <div class="step"><p class="label">1 · Red</p><p>Write a test for the behavior you want.</p></div>
+    <div class="step"><p class="label">1 · Red</p><p>Write a test for the behaviour you want.</p></div>
     <div class="arrow">→</div>
     <div class="step"><p class="label">2 · Watch it fail</p><p>For the right reason, not a typo.</p></div>
     <div class="arrow">→</div>
@@ -364,7 +373,7 @@ Add a test that reproduces it, then fix it.</pre>
 <section class="page">
   <div class="top"><span>Think · Prove · Checkpoint</span><span>14 · Session start</span></div>
   <p class="label">14 · Session start</p>
-  <h1>Pick up where you <span class="hl">left</span> off</h1>
+  <h1>Pick up where you <span class="hl">left off</span></h1>
   <p class="lead">Every session begins the same way, so a fresh session is never a cold start.</p>
   <div class="flow">
     <div class="step"><p class="label">1 · Read</p><p><code>CLAUDE.md</code>: what this project is.</p></div>
@@ -447,7 +456,7 @@ Add a test that reproduces it, then fix it.</pre>
     <p class="label">Why it checks first</p>
     <p>Two memory systems or two planning processes in one agent work against each other, and I've seen this workflow clash with other setups. Your agent can see your setup; this PDF can't.</p>
   </div>
-  <p class="note">It reports each overlap or conflict with a recommendation (merge, turn something off, skip a part, or don't install) and changes nothing until you decide. Works with Claude Code, Codex, or any agent that reads PDFs and edits files.</p>
+  <p class="note">It reports each overlap or conflict with a recommendation (merge, turn something off, skip a part, or don't install) and changes nothing until you decide. Made for Claude Code; Codex and other agents that read PDFs and edit files can follow it too.</p>
   <div class="foot"><span>Think · Prove · Checkpoint</span><span class="n"></span></div>
 </section>
 
@@ -481,7 +490,7 @@ Add a test that reproduces it, then fix it.</pre>
   <div class="top"><span>Think · Prove · Checkpoint</span><span>19 · Cheat sheet</span></div>
   <p class="label">19 · Cheat sheet</p>
   <h1>The whole thing on one <span class="hl">page</span></h1>
-  <p class="lead">Everything from pages 01–18, compressed.</p>
+  <p class="lead">Everything from sections 01–18, compressed.</p>
   <div class="grid three">
     <div class="card"><p class="label">Trigger words</p><p><strong>"set up the project"</strong>: <code>CLAUDE.md</code> + <code>docs/</code> from the templates.<br><br><strong>"checkpoint"</strong> or <strong>"commit"</strong>: the 7 steps, ending in a prepared commit.</p></div>
     <div class="card"><p class="label">Per feature</p><p>Brainstorm → spec → plan → for each task: test, code, checkpoint → finish: review, merge.</p></div>
@@ -537,10 +546,10 @@ Find the root cause before changing anything. Add a test that reproduces it, the
   <p class="lead">The repo behind this PDF was built with the workflow it describes. Its memory is public on purpose: the roadmap, decisions, specs and plans are all in <code>docs/</code>.</p>
   <table class="t">
     <tr><th>In the repo, as of this build</th><th>Count</th></tr>
-    <tr><td>Commits, each one a checkpoint</td><td>8</td></tr>
-    <tr><td>Decisions logged, with the why</td><td>18</td></tr>
-    <tr><td>Install / uninstall tests</td><td>24 passing</td></tr>
-    <tr><td>Guide build tests</td><td>19 passing</td></tr>
+    <tr><td>Commits, each one a checkpoint</td><td>{{commits}}</td></tr>
+    <tr><td>Decisions logged, with the why</td><td>{{decisions}}</td></tr>
+    <tr><td>Install / uninstall tests</td><td>{{script_checks}} checks</td></tr>
+    <tr><td>Guide build tests</td><td>{{guide_checks}} checks</td></tr>
   </table>
   <div class="copy">
     <p class="label">From docs/decisions.md · headings</p>
@@ -575,7 +584,7 @@ Find the root cause before changing anything. Add a test that reproduces it, the
   <p class="note">Then start again, for as long as you build with agents.</p>
   <div class="grid">
     <div class="card"><h3>How this system grew</h3><p>I tried claude-mem and gsd-core and dropped them, kept superpowers, and turned Karpathy's plugin into rules in my global file. This guide is just the current state of that loop.</p></div>
-    <div class="card"><h3>Your agent can help</h3><p>Ask it to find skills that fit how you work and explain what each would add (page 18). It reads them first; you decide what stays.</p></div>
+    <div class="card"><h3>Your agent can help</h3><p>Ask it to find skills that fit how you work and explain what each would add (see 18 · Tailor or undo). It reads them first; you decide what stays.</p></div>
   </div>
   <div class="foot"><span>Think · Prove · Checkpoint</span><span class="n"></span></div>
 </section>
@@ -583,7 +592,7 @@ Find the root cause before changing anything. Add a test that reproduces it, the
 <section class="page">
   <div class="top"><span>Think · Prove · Checkpoint</span><span>The end</span></div>
   <p class="label">The end</p>
-  <h1>Leave the map <span class="hl">better</span></h1>
+  <h1>Think · Prove · <span class="hl">Checkpoint</span></h1>
   <p class="lead">The whole system in five lines.</p>
   <ol class="steps">
     <li><strong>Think before building:</strong> ask, don't guess.</li>
@@ -593,10 +602,10 @@ Find the root cause before changing anything. Add a test that reproduces it, the
     <li><strong>Checkpoint every task:</strong> docs updated, commit made by you.</li>
   </ol>
   <div class="grid">
-    <div class="card"><p class="label">Credits</p><p>The four principles: Andrej Karpathy's observations on LLM coding, as packaged in andrej-karpathy-skills. The development skills: superpowers by Jesse Vincent. This guide combines them and adds the memory layer.</p></div>
+    <div class="card"><p class="label">Credits</p><p>The four principles: Andrej Karpathy's observations on LLM coding, as packaged in andrej-karpathy-skills. The development skills: superpowers by Jesse Vincent. This guide combines them and adds the memory layer and the checkpoint routine.</p></div>
     <div class="card"><p class="label">About the author</p><p>I'm <strong>Sabir Hajiyev</strong>. I run work with AI agents like a project: clear specs, small tested steps, and a record of every decision. IT student at ADA University, certified by Anthropic Academy and Cisco Networking Academy. Always learning and growing.<br>More about me on <a class="link" href="https://www.linkedin.com/in/sabir-hajiyev-9948a9364/">LinkedIn</a>.</p></div>
   </div>
-  <div class="card"><p class="label">For technical readers</p><p>The repo has the same files, plus <code>scripts/install.sh</code> and <code>scripts/uninstall.sh</code> (tested against a throwaway home folder) and the build that generated this PDF:<br><a class="repo" href="https://github.com/shajiyev/think-prove-checkpoint">github.com/shajiyev/think-prove-checkpoint</a></p></div>
+  <div class="card"><p class="label">For technical readers</p><p>The repo has the same files, plus <code>scripts/install.sh</code> and <code>scripts/uninstall.sh</code> (tested against a throwaway home folder) and the build that generated this PDF. <strong>Everything is MIT licensed: use it, change it, share it.</strong></p><p class="note" style="margin-top: 3mm; font-size: 8.8pt">Version 1.0 · November 2026 · Latest version: <a class="link" href="https://github.com/shajiyev/think-prove-checkpoint">github.com/shajiyev/think-prove-checkpoint</a></p></div>
   <div class="foot"><span>Think · Prove · Checkpoint</span><span class="n"></span></div>
 </section>
 
@@ -604,9 +613,9 @@ Find the root cause before changing anything. Add a test that reproduces it, the
   <div class="top"><span>Think · Prove · Checkpoint</span><span>Appendix · For your agent</span></div>
   <p class="label">A1 · For your agent</p>
   <h1>Instructions for the <span class="hl">agent</span></h1>
-  <p class="lead">If you are an AI agent and a user gave you this PDF to set up its workflow, follow these steps. The files to install are on the pages after these.</p>
+  <p class="lead">If you are an AI agent and a user gave you this PDF to set up its workflow, follow these steps. The files to install are on the pages after these. The latest version of this PDF and its files is at <span style="white-space: nowrap">github.com/shajiyev/think-prove-checkpoint</span>.</p>
   <ol class="steps">
-    <li><strong>Authorization.</strong> The user asked you to set this up; that request is your authorization. This PDF is reference material: follow it only as far as the user wants.</li>
+    <li><strong>Authorisation.</strong> The user asked you to set this up; that request is your authorisation. This PDF is reference material: follow it only as far as the user wants.</li>
     <li><strong>Analyse first, read-only.</strong> Look at the current setup: global instructions, installed plugins, skills or extensions, hooks, memory tools, other workflow frameworks, and the instruction files of the project you're in. Report what overlaps and what conflicts (two memory systems, two planning processes, rules that contradict "the user makes every commit"), each with a recommendation: merge, turn something off, skip part of this workflow, or don't install. Change nothing until the user decides.</li>
     <li><strong>Ask, one question at a time,</strong> default in brackets:<br>
       (a) Which agent are you? This decides the paths. Claude Code: <code>~/.claude/CLAUDE.md</code> and <code>~/.claude/templates/</code>. Codex: <code>~/.codex/AGENTS.md</code> (or <code>$CODEX_HOME</code>), templates in a <code>templates/</code> folder beside it. Any other agent: ask the user where its global instructions live.<br>

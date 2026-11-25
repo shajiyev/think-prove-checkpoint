@@ -5,8 +5,8 @@ session, everywhere — so it stays lean. Project-specific facts live in each re
 `CLAUDE.md`, not here.
 
 ## Core principles (Karpathy)
-These four rules govern every change. They bias toward caution over speed; for trivial
-tasks, use judgment.
+These four rules govern every change. They bias towards caution over speed; for trivial
+tasks, use judgement.
 1. **Think before coding** — State assumptions. If multiple interpretations exist, present
    them; don't pick silently. If something's unclear, stop and ask.
 2. **Simplicity first** — Minimum code that solves the problem. No speculative features,
@@ -22,7 +22,7 @@ Report status honestly — evidence before claiming something works.
 
 ## Development workflow (superpowers)
 Skills fire automatically; the intended spine is:
-1. **Brainstorm** before any new feature or behavior → superpowers:brainstorming.
+1. **Brainstorm** before any new feature or behaviour → superpowers:brainstorming.
    Write the spec to `docs/specs/<feature>.md` (no date prefix; this overrides the
    skill's default `YYYY-MM-DD-<topic>-design.md` path).
 2. **Plan** multi-step work into `docs/plans/<feature>.md` → superpowers:writing-plans.

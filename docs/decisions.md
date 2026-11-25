@@ -108,3 +108,10 @@ readers to own and evolve theirs. Unnumbered so the approved cover's contents ta
 developers. The cover is unchanged.
 **Why:** the workflow assumes one person who reviews every change and makes every commit; naming the
 audience sets the right expectations. Teams can adapt it, but it isn't designed for them.
+
+## 2026-11-25 — British spelling throughout the guide
+**Decision:** the guide, its prompts and the reader copy of the framework files use British
+spelling ("analyse", "summarise", "behaviour", "judgement", "towards", "authorisation"). The
+author's live files are unchanged; like the "(the agent)" marks, this is a documented difference
+in `framework/` only. The README keeps "License" (the MIT License's name and GitHub's file name).
+**Why:** consistent spelling; the author writes British English.

@@ -118,7 +118,9 @@ growing". No certificate count, no club (author's request); facts from the autho
   `guide/think-prove-checkpoint.pdf` with Chrome headless, then loads it with `#check` and fails
   unless overflow is `none`, PDF pages = sections, and every appendix file's rendered text equals
   its source byte for byte. Prints `pdf pages · sections · overflow · appendix: N files`.
-- `guide/assemble.sh <src> <out>` — expands `<!-- appendix A2: <paths> -->` into appendix pages
+- `guide/assemble.sh <src> <out>` — fills page 21's counts (`{{commits}}` from git, `{{decisions}}`
+  from `docs/decisions.md`, `{{script_checks}}` / `{{guide_checks}}` = `check` lines in each test
+  file) and expands `<!-- appendix A3: <paths> -->` into appendix pages
   (HTML-escaped, headed "target path · lines a–b of n"); splits only files longer than a page;
   `APPENDIX_LINES` = line budget per page (default 60). Output `guide/src/guide.gen.html` is gitignored.
 - `guide/src/check.js` — `#check` mode, after `document.fonts.ready`: overflow down or sideways
@@ -131,6 +133,11 @@ growing". No certificate count, no club (author's request); facts from the autho
 ## Gotchas
 - Chrome drops backgrounds in print unless `print-color-adjust: exact`.
 - Content must not overflow a page: `build.sh` checks every page after each build.
+- The repo URL appears as visible text (not only behind a link) on the closing page's version line and
+  in A1's lead, so it survives print, non-clicking viewers and agents reading the text layer.
+- Text refers to **sections** ("see 18 · Tailor or undo"), never page numbers: the footer counts PDF
+  pages (cover = 1), so section N sits on a different page.
+- Page 21's commit count can't include the commit about to be made; its label says "as of this build".
 - PDFs over 8 pages split the page tree into nodes with their own `/Count`; `build.sh` takes the
   largest (the root). Found when the full guide reported 8 pages for 32 sections.
 - Bold headlines lose some spaces in *extracted* text ("usethis") because of their tight
@@ -158,7 +165,7 @@ growing". No certificate count, no club (author's request); facts from the autho
 
 ## Tests
 - `guide/build.sh` exits 0: overflow `none`, PDF page count = page sections.
-- `tests/test_guide.sh` (19): real guide builds with all 9 files; fixtures for escaping, a part
+- `tests/test_guide.sh` (23): page 21 counts filled and correct (no `{{` left); real guide builds with all 9 files; fixtures for escaping, a part
   starting with a blank line, long-file splits, short files kept whole, too-wide line, CRLF,
   missing file; a PDF over 8 pages counted right; PDF text layer keeps Markdown symbols (`tests/pdf_text.swift`, macOS PDFKit).
 - Negative check (done in G1): 40 lines of filler on the cover → `overflow: 1`, exit 1;
@@ -183,6 +190,11 @@ growing". No certificate count, no club (author's request); facts from the autho
 2026-11-24 — G1 built: style system, build pipeline, cover page.
 2026-11-24 — PDF becomes the installer: page 00, pages 17–18 reworked, appendix A1+ with the
 files verbatim; cover unchanged.
+2026-11-25 — Full review: sections not pages in references; page 21 counts automatic; "made for
+Claude Code" (Codex can follow); British spelling (reader copy of framework too); credits name the
+memory layer and checkpoint routine; closing title "Think · Prove · Checkpoint"; page 14 highlights
+"left off"; page 09 skill names stacked; page 01 "Without / With" table; version line (1.0, November
+2026) and MIT note on the closing page; cover contents list 00 and A1–A8.
 2026-11-24 — Cover label and README: "A practical guide".
 2026-11-24 — "Before you go" page added before the closing page (author's request).
 2026-11-24 — G3–G7 built in one batch (user's call): all pages, A1–A2, dry run passed.

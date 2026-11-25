@@ -34,6 +34,13 @@ echo "# real guide"
 check "guide builds and passes its self-check" real_build
 check "all 9 framework files are in the appendix" logged real "appendix: 9 files"
 
+echo "# page 21 counts are filled at build time"
+gen="$ROOT/guide/src/guide.gen.html"
+check "no {{placeholder}} left in the built guide" refuses grep -q '{{' "$gen"
+check "commit count matches git" grep -q "<td>$(git -C "$ROOT" rev-list --count HEAD)</td>" "$gen"
+check "decision count matches docs/decisions.md" grep -q "<td>$(grep -c '^## ' "$ROOT/docs/decisions.md")</td>" "$gen"
+check "test counts match the test files" grep -q "<td>$(grep -cE '^[[:space:]]*check ' "$ROOT/tests/test_scripts.sh") checks</td>" "$gen"
+
 echo "# appendix text survives HTML exactly"
 printf '%s\n' '<script>alert(1)</script>' 'a & b &amp; c' '</pre> is just text' \
   "\"double\" and 'single' quotes" 'unicode: · → —' > "$TMP/escape.md"

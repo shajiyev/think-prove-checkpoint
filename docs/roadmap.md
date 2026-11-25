@@ -7,7 +7,9 @@ _Last updated: 2026-11-24_
 - **M3 complete:** the guide, 33 pages, reviewed by the author.
 - **Done (G8):** README leads with the agent path (prompts identical to the PDF); page 21 numbers
   refreshed; final build 33 pages, 19 + 24 tests pass.
-- **Next (M4, user):** make the repo public, check the PDF link, post on LinkedIn.
+- **Done (2026-11-25):** full page-by-page review applied (page 21 counts now automatic; British
+  spelling; version 1.0 line; cover contents complete).
+- **Next (M4, user):** tag v1.0, post on LinkedIn.
 
 ## Milestones
 ### M1 — Foundation

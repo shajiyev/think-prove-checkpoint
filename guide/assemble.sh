@@ -3,10 +3,19 @@
 # Usage: assemble.sh <src.html> <out.html>
 # Marker, on its own line: <!-- appendix A2: framework/global-CLAUDE.md framework/templates/spec.md -->
 # Paths are relative to the repo root, or absolute. APPENDIX_LINES = line budget per page.
+# Also fills the page 21 counts: {{commits}} {{decisions}} {{script_checks}} {{guide_checks}}.
 set -euo pipefail
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 
-awk -v root="$ROOT" -v budget="${APPENDIX_LINES:-60}" '
+checks() { grep -cE '^[[:space:]]*check ' "$1"; }
+COMMITS="$(git -C "$ROOT" rev-list --count HEAD)"
+DECISIONS="$(grep -c '^## ' "$ROOT/docs/decisions.md")"
+SCRIPT_CHECKS="$(checks "$ROOT/tests/test_scripts.sh")"
+GUIDE_CHECKS="$(checks "$ROOT/tests/test_guide.sh")"
+
+awk -v root="$ROOT" -v budget="${APPENDIX_LINES:-60}" \
+    -v commits="$COMMITS" -v decisions="$DECISIONS" \
+    -v script_checks="$SCRIPT_CHECKS" -v guide_checks="$GUIDE_CHECKS" '
 function esc(s) { gsub(/&/, "\\&amp;", s); gsub(/</, "\\&lt;", s); gsub(/>/, "\\&gt;", s); return s }
 function target(p) { if (p ~ /global-CLAUDE\.md$/) return "~/.claude/CLAUDE.md"; sub(/^.*framework\//, "~/.claude/", p); return p }
 function open_page() {
@@ -52,5 +61,9 @@ BEGIN { HEAD = 5 }
   if (inpage) close_page()
   next
 }
-{ print }
+{
+  gsub(/\{\{commits\}\}/, commits); gsub(/\{\{decisions\}\}/, decisions)
+  gsub(/\{\{script_checks\}\}/, script_checks); gsub(/\{\{guide_checks\}\}/, guide_checks)
+  print
+}
 ' "$1" > "$2"

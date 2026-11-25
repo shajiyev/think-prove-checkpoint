@@ -6,11 +6,21 @@ that lives in git, where you can read it, review it and roll it back.
 
 ### **[Download the practical guide (PDF)](guide/think-prove-checkpoint.pdf)**
 
+## Sound familiar?
+- You stay in one session for days, afraid that a new one means starting over.
+- You explain your project again and again.
+- You can't easily tell what changed, or why.
+- You hope it works instead of knowing it does.
+- You burn tokens re-explaining and re-fixing the same things.
+
+This workflow is how I stopped doing all of that.
+
 ## Two ways to use it
 - **Read it.** The guide explains what goes wrong without structure, the three layers that fix
   it, and how a feature moves from idea to commit.
-- **Hand it to your agent.** Give the PDF to Claude Code, Codex or any agent that reads PDFs and
-  edits files, and paste the prompt below. No steps to follow.
+- **Hand it to your agent.** Give the PDF to your agent and paste the prompt below. No steps to
+  follow. Made for Claude Code; Codex and other agents that read PDFs and edit files can follow
+  it too.
 
 > I'm giving you a PDF called "Think · Prove · Checkpoint". Set its workflow up for me by
 > following its appendix, "For your agent". First analyse my current setup and tell me what

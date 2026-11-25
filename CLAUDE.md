@@ -20,8 +20,9 @@ technical emphasis — **this repo is built with the workflow it describes.**
 - `framework/` is copied **from** the author's live `~/.claude/CLAUDE.md` and
   `~/.claude/templates/`; never edit only one side. **One deliberate exception:** in
   `framework/global-CLAUDE.md`, pronouns that mean the agent are marked "(the agent)" for
-  readers (lines 3, 71, 91, 96). The author's live file keeps its own wording; re-apply the
-  marks after any re-sync (`docs/decisions.md`, 2026-11-24).
+  readers (lines 3, 71, 91, 96), and the reader copy uses British spelling ("towards",
+  "judgement", "behaviour"; `templates/spec.md`: "## Behaviour"). The author's live files keep
+  their own wording; re-apply both after any re-sync (`docs/decisions.md`, 2026-11-24/25).
 - No personal data in committed files beyond the author credit (name, university) and the
   LinkedIn link on the closing page (author's request). Never an email.
 - Scripts never overwrite anything without a timestamped backup first.

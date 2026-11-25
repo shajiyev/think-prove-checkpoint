@@ -3,7 +3,7 @@
 ## Goal
 TODO: what it does and for whom
 
-## Behavior
+## Behaviour
 - TODO
 
 ## Out of scope
