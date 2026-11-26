@@ -81,6 +81,11 @@ first spec to the final PDF. Every step is public:
 - The [commit history](https://github.com/shajiyev/think-prove-checkpoint/commits/main): one
   commit per checkpoint, prepared by the agent and made by me
 
+Every commit ends with `Co-Authored-By: Claude …` because Claude Code helped build this repo. It's
+Claude Code's default, not part of this workflow. Want your commits in another style? Just tell
+your agent, for example: *"Leave the Co-Authored-By line out of my commits, and save that in my
+CLAUDE.md."*
+
 ## For technical readers
 This repo has the same files as the guide's appendix (`framework/`), plus
 `scripts/install.sh` and `scripts/uninstall.sh` for Claude Code (they back up first, and are
