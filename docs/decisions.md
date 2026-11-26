@@ -115,3 +115,69 @@ spelling ("analyse", "summarise", "behaviour", "judgement", "towards", "authoris
 author's live files are unchanged; like the "(the agent)" marks, this is a documented difference
 in `framework/` only. The README keeps "License" (the MIT License's name and GitHub's file name).
 **Why:** consistent spelling; the author writes British English.
+
+## 2026-11-25 — Project facts live in project.json
+**Decision:** version, release date, repo URL, LinkedIn link and site URL are kept in one flat
+`project.json`; `guide/assemble.sh` fills them into the PDF and the site as `{{placeholders}}` and
+fails on a missing or unfilled one. The README is written by hand; tests check it matches.
+**Why:** one change updates every place a fact appears, and a forgotten place fails a test.
+**Alternatives considered:** generating the README (you'd edit a template, not the README);
+shared text blocks between README and guide (more machinery than the drift it prevents).
+
+## 2026-11-25 — The website is built from guide.html; site/dist is committed
+**Decision:** `site/build.sh` turns the assembled guide into a web page (cover → hero, pages →
+sections, appendix dropped) with its own CSS and JS, and the built `site/dist/` is committed.
+Vercel only serves it. Colours and fonts move to `tokens.css`, shared by print and web.
+**Why:** the site and the PDF can never say different things; building locally keeps "Chrome is the
+only dependency" true, and Vercel's shallow clone would miscount page 21's commits.
+**Alternatives considered:** rendering `guide.html` in the browser (empty page until JS runs, bad for
+link previews); a framework like Astro or Next.js (Node and dependencies for one page).
+
+## 2026-11-25 — Link preview: a screenshot of the hero, made at build time
+**Decision:** `site/build.sh` screenshots the hero at 1200×630 (`#og` mode) as `og.png`.
+**Why:** the preview always matches the cover; it is byte-identical across builds, so it is tested
+like every other file. **Alternatives considered:** a hand-made image that would drift.
+
+## 2026-11-25 — One constant website action: "Get the PDF"
+**Decision:** the website keeps one action always in view: **Get the PDF**, at the top of the
+desktop rail and in the phone bar. Outside links and the PDF open in a new tab. "Set it up" stays
+the last navigation entry, not a floating button.
+**Why:** the PDF is what readers need (it holds the prompt and the appendix their agent installs
+from); "Set it up" would be one more hop to the same button. The rail is always visible, so its top
+is always on screen without covering content, which a floating top-right button would between
+1000 and 1150px wide.
+**Alternatives considered:** a floating top-right "Set it up" button (the author's first idea);
+navigation only.
+
+## 2026-11-25 — Page 21's counts stay build-time; downloaded PDFs are handled by versions
+**Decision:** page 21's counts are filled at every build, labelled "as of this build", and tests
+refuse a stale PDF or site. Copies people already downloaded are handled by the version line and a
+"latest version" link to the website (once it's live), with `version` bumped in `project.json` for
+each content release.
+**Why:** live counts would need the GitHub API on every visit (rate-limited, numbers that jump after
+load, and a site that disagrees with the PDF). A file that has left the site can't be updated; it can
+only say how to get the newest one.
+
+## 2026-11-25 — The hero has no PDF button
+**Decision:** the hero's buttons are **Read the guide** and **GitHub**; **Get the PDF** stays in the
+navigation (rail, phone bar) and in "Set it up".
+**Why:** the navigation shows it on every screen, the hero included, so a third button repeated it
+and needed phone-only shrinking to fit on one line (author's hand check).
+
+## 2026-11-25 — Read first, set up optionally
+**Decision:** page 00's lead says to read the guide like an article ("Nothing to install, nothing to
+follow"), with handing it to an agent as the optional next step. The LinkedIn post says: "It's a
+short read on how I work with Claude Code. If you like it, your agent can set it up for you."
+**Why:** most readers come from LinkedIn and should feel free to just read it; setting it up is for
+those who like what they see (author's request).
+
+## 2026-11-25 — "What you need" lives on 17, not 00
+**Decision:** a box on 17 · Hand it to your agent lists what a newcomer needs: a paid Claude plan or
+Console account, Claude Code (Anthropic's install command, then `claude` to sign in), and Git
+(GitHub optional). 00's agent card says "What you need: see 17."
+**Why:** people new to Claude Code need to know what to get before handing the PDF to an agent
+(author's request). On 00 the box made the page 73px too tall; 17 is where setup happens, and it
+keeps 00's "nothing to install" lead true. Git is listed although Claude Code's docs call it
+optional, because this workflow's memory lives in commits.
+**Alternatives considered:** trimming 00's "Before you install" callout and appendix note; a separate
+"Before you start" page.

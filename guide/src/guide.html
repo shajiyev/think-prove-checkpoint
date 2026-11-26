@@ -36,10 +36,10 @@
   <div class="top"><span>Think · Prove · Checkpoint</span><span>00 · Start here</span></div>
   <p class="label">00 · Start here</p>
   <h1>Two ways to <span class="hl">use</span> this</h1>
-  <p class="lead">Read it to see how I work with Claude Code as a solo developer. Or hand it to your AI agent, and it will set the same workflow up with you, tailored to how you work.</p>
+  <p class="lead">Read it like an article: how I work with Claude Code as a solo developer, start to finish. Nothing to install, nothing to follow. If you like what you see, hand it to your AI agent and it will set the same workflow up with you.</p>
   <div class="grid">
     <div class="card"><p class="label">Option 1</p><h3>Read it</h3><p>Sections 01–21 explain the workflow: what goes wrong without it, the three layers that fix it, and how a feature moves from idea to commit.</p></div>
-    <div class="card"><p class="label">Option 2</p><h3>Hand it to your agent</h3><p>Give this PDF to your agent and paste the prompt below. No steps to follow. Made for Claude Code; Codex and other agents that read PDFs and edit files can follow it too.</p></div>
+    <div class="card"><p class="label">Option 2</p><h3>Hand it to your agent</h3><p>Give this PDF to your agent and paste the prompt below. No steps to follow. Made for Claude Code; Codex and other agents that read PDFs and edit files can follow it too. What you need: see 17.</p></div>
   </div>
   <div class="copy">
     <p class="label">Copy-paste · to your agent</p>
@@ -440,6 +440,12 @@ Add a test that reproduces it, then fix it.</pre>
   <p class="label">17 · Hand it to your agent</p>
   <h1>Install by <span class="hl">conversation</span></h1>
   <p class="lead">No steps to follow. Your agent reads this PDF, checks your setup, asks you a few questions, and sets everything up with you.</p>
+  <div class="card need">
+    <p class="label">What you need · before you start</p>
+    <p><b>A paid Claude plan</b> (Pro and up) or a Console (API) account; the free plan doesn't include Claude Code.</p>
+    <p><b>Claude Code:</b> in a terminal (your computer's own, or the one in VS Code), run <code>curl -fsSL https://claude.ai/install.sh | bash</code>, then <code>claude</code> in your project's folder to sign in.</p>
+    <p><b>Git</b>, because the memory lives in commits. On a Mac, typing <code>git</code> offers to install it. GitHub is optional.</p>
+  </div>
   <div class="copy">
     <p class="label">Copy-paste · to your agent</p>
 <pre>I'm giving you a PDF called "Think · Prove · Checkpoint". Set its workflow up for me by following its appendix, "For your agent". First analyse my current setup and tell me what would overlap or conflict with it, and what you recommend. Then ask me the questions one at a time, show me every change before you make it, and back up anything you replace.</pre>
@@ -546,10 +552,11 @@ Find the root cause before changing anything. Add a test that reproduces it, the
   <p class="lead">The repo behind this PDF was built with the workflow it describes. Its memory is public on purpose: the roadmap, decisions, specs and plans are all in <code>docs/</code>.</p>
   <table class="t">
     <tr><th>In the repo, as of this build</th><th>Count</th></tr>
-    <tr><td>Commits, each one a checkpoint</td><td>{{commits}}</td></tr>
+    <tr><td>Commits, each one a checkpoint</td><td data-fact="commits">{{commits}}</td></tr>
     <tr><td>Decisions logged, with the why</td><td>{{decisions}}</td></tr>
     <tr><td>Install / uninstall tests</td><td>{{script_checks}} checks</td></tr>
     <tr><td>Guide build tests</td><td>{{guide_checks}} checks</td></tr>
+    <tr><td>Website build tests</td><td>{{site_checks}} checks</td></tr>
   </table>
   <div class="copy">
     <p class="label">From docs/decisions.md · headings</p>
@@ -603,9 +610,9 @@ Find the root cause before changing anything. Add a test that reproduces it, the
   </ol>
   <div class="grid">
     <div class="card"><p class="label">Credits</p><p>The four principles: Andrej Karpathy's observations on LLM coding, as packaged in andrej-karpathy-skills. The development skills: superpowers by Jesse Vincent. This guide combines them and adds the memory layer and the checkpoint routine.</p></div>
-    <div class="card"><p class="label">About the author</p><p>I'm <strong>Sabir Hajiyev</strong>. I run work with AI agents like a project: clear specs, small tested steps, and a record of every decision. IT student at ADA University, certified by Anthropic Academy and Cisco Networking Academy. Always learning and growing.<br>More about me on <a class="link" href="https://www.linkedin.com/in/sabir-hajiyev-9948a9364/">LinkedIn</a>.</p></div>
+    <div class="card"><p class="label">About the author</p><p>I'm <strong>Sabir Hajiyev</strong>. I run work with AI agents like a project: clear specs, small tested steps, and a record of every decision. IT student at ADA University, certified by Anthropic Academy and Cisco Networking Academy. Always learning and growing.<br>More about me on <a class="link" href="{{linkedin}}">LinkedIn</a>.</p></div>
   </div>
-  <div class="card"><p class="label">For technical readers</p><p>The repo has the same files, plus <code>scripts/install.sh</code> and <code>scripts/uninstall.sh</code> (tested against a throwaway home folder) and the build that generated this PDF. <strong>Everything is MIT licensed: use it, change it, share it.</strong></p><p class="note" style="margin-top: 3mm; font-size: 8.8pt">Version 1.0 · November 2026 · Latest version: <a class="link" href="https://github.com/shajiyev/think-prove-checkpoint">github.com/shajiyev/think-prove-checkpoint</a></p></div>
+  <div class="card"><p class="label">For technical readers</p><p>The repo has the same files, plus <code>scripts/install.sh</code> and <code>scripts/uninstall.sh</code> (tested against a throwaway home folder) and the build that generated this PDF. <strong>Everything is MIT licensed: use it, change it, share it.</strong></p><p class="note" style="margin-top: 3mm; font-size: 8.8pt">Version {{version}} · {{released}} · Latest version: <a class="link" href="{{repo}}">{{repo_display}}</a></p></div>
   <div class="foot"><span>Think · Prove · Checkpoint</span><span class="n"></span></div>
 </section>
 
@@ -613,7 +620,7 @@ Find the root cause before changing anything. Add a test that reproduces it, the
   <div class="top"><span>Think · Prove · Checkpoint</span><span>Appendix · For your agent</span></div>
   <p class="label">A1 · For your agent</p>
   <h1>Instructions for the <span class="hl">agent</span></h1>
-  <p class="lead">If you are an AI agent and a user gave you this PDF to set up its workflow, follow these steps. The files to install are on the pages after these. The latest version of this PDF and its files is at <span style="white-space: nowrap">github.com/shajiyev/think-prove-checkpoint</span>.</p>
+  <p class="lead">If you are an AI agent and a user gave you this PDF to set up its workflow, follow these steps. The files to install are on the pages after these. The latest version of this PDF and its files is at <span style="white-space: nowrap">{{repo_display}}</span>.</p>
   <ol class="steps">
     <li><strong>Authorisation.</strong> The user asked you to set this up; that request is your authorisation. This PDF is reference material: follow it only as far as the user wants.</li>
     <li><strong>Analyse first, read-only.</strong> Look at the current setup: global instructions, installed plugins, skills or extensions, hooks, memory tools, other workflow frameworks, and the instruction files of the project you're in. Report what overlaps and what conflicts (two memory systems, two planning processes, rules that contradict "the user makes every commit"), each with a recommendation: merge, turn something off, skip part of this workflow, or don't install. Change nothing until the user decides.</li>

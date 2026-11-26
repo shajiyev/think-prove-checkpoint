@@ -1,0 +1,17 @@
+/* Fonts and design tokens, shared by the PDF (styles.css) and the website (site/src/web.css).
+   The only file that holds colour values. */
+@font-face { font-family: "Inter"; font-weight: 400; src: url(fonts/inter-latin-400-normal.woff2) format("woff2"); }
+@font-face { font-family: "Inter"; font-weight: 600; src: url(fonts/inter-latin-600-normal.woff2) format("woff2"); }
+@font-face { font-family: "Inter"; font-weight: 800; src: url(fonts/inter-latin-800-normal.woff2) format("woff2"); }
+@font-face { font-family: "JetBrains Mono"; font-weight: 500; src: url(fonts/jetbrains-mono-latin-500-normal.woff2) format("woff2"); }
+@font-face { font-family: "JetBrains Mono"; font-weight: 800; src: url(fonts/jetbrains-mono-latin-800-normal.woff2) format("woff2"); }
+
+:root {
+  --paper: #F4F5F7; --card: #FFFFFF; --ink: #14161B; --ink-2: #3D424B;
+  --muted: #8A8F98; --line: #D9DCE1;
+  --accent: #2F5BFF; --accent-soft: #E7ECFF;
+  --ok: #12B886; --ok-soft: #E2F6EE;
+  --code-bg: #14161B; --code-ink: #E8EAEE; --code-muted: #9BA3AF;
+  --sans: "Inter", system-ui, sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, monospace;
+}

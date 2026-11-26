@@ -1,0 +1,182 @@
+@import url("tokens.css");
+
+/* The guide on screens. The content markup is the PDF's (guide/src/guide.html); this file only
+   lays it out for the web. Colours and fonts come from tokens.css. */
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; scroll-padding-top: 72px; }
+body {
+  margin: 0; background: var(--paper); color: var(--ink); font-family: var(--sans);
+  font-variant-ligatures: none; font-feature-settings: "liga" 0, "calt" 0;
+}
+main { max-width: 760px; margin: 0 auto; padding: 0 16px 48px; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+/* Type */
+.label {
+  font-family: var(--mono); font-weight: 500; font-size: .75rem; letter-spacing: .18em;
+  text-transform: uppercase; color: var(--accent); margin: 0 0 .75rem;
+}
+h1 { font-size: clamp(2rem, 6vw, 2.75rem); line-height: 1.08; font-weight: 800; letter-spacing: -.025em; margin: 0 0 1.25rem; }
+h1 .hl { font-family: var(--mono); font-weight: 800; color: var(--accent); letter-spacing: -.05em; }
+h3 { font-size: 1.05rem; font-weight: 800; margin: 0 0 .4rem; color: var(--ink); }
+.lead { font-size: 1.15rem; line-height: 1.55; color: var(--ink-2); margin: 0 0 2rem; }
+p, li { font-size: 1rem; line-height: 1.65; color: var(--ink-2); }
+strong { color: var(--ink); }
+code {
+  font-family: var(--mono); font-size: .86em; color: var(--accent); background: var(--accent-soft);
+  padding: .1em .35em; border-radius: 4px; overflow-wrap: anywhere;
+}
+.link, .sec a:not(.btn) { color: var(--accent); font-weight: 600; text-decoration: none; border-bottom: 1px solid var(--accent); }
+.note { font-size: .9rem; color: var(--muted); margin: 0 0 1.5rem; }
+.credit { border-left: 2px solid var(--accent); padding: 0 0 0 1rem; margin: 0 0 1.75rem; font-size: .95rem; }
+.ok { color: var(--ok); font-weight: 800; }
+
+/* Sections */
+.sec { padding: 72px 0 32px; border-top: 1px solid var(--line); }
+
+/* Components: the PDF's shapes in screen units */
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin: 0 0 28px; }
+.grid.three { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+.card { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 20px; }
+.card p:not(.label) { margin: 0; font-size: .95rem; }
+.card .label { margin-bottom: .5rem; }
+.card.need { margin: 0 0 28px; }
+.card.need p:not(.label) + p { margin-top: .5rem; }
+.callout { border: 1.5px solid var(--accent); background: var(--accent-soft); border-radius: 14px; padding: 20px 24px; margin: 0 0 28px; }
+.callout .label { margin-bottom: .5rem; }
+.callout p:not(.label) { margin: 0; font-size: 1.15rem; font-weight: 600; line-height: 1.45; color: var(--ink); }
+.callout p.sub { margin-top: .4rem; font-size: 1rem; font-weight: 400; color: var(--ink-2); }
+.copy { position: relative; background: var(--code-bg); border-radius: 14px; padding: 20px 24px; margin: 0 0 28px; }
+.copy .label { color: var(--code-muted); margin-bottom: .75rem; padding-right: 88px; }
+.copy pre {
+  margin: 0; font-family: var(--mono); font-weight: 500; font-size: .85rem; line-height: 1.65;
+  color: var(--code-ink); white-space: pre-wrap; overflow-wrap: anywhere;
+}
+.copy pre.cols { white-space: pre; overflow-wrap: normal; overflow-x: auto; }
+table.t { display: block; overflow-x: auto; margin: 0 0 28px; }
+table.t > tbody { display: table; width: 100%; border-collapse: collapse; }
+table.t th {
+  font-family: var(--mono); font-weight: 500; font-size: .7rem; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--muted); text-align: left; padding: 0 12px 8px 0; border-bottom: 1px solid var(--line);
+}
+table.t td { font-size: .95rem; line-height: 1.5; color: var(--ink-2); padding: 10px 12px 10px 0; border-bottom: 1px solid var(--line); vertical-align: top; }
+table.t td:first-child { font-weight: 600; color: var(--ink); }
+/* Names like superpowers:brainstorming stay whole; a table too wide for a phone scrolls in its box. */
+table.t code { overflow-wrap: normal; }
+.flow { display: flex; align-items: stretch; gap: 10px; margin: 0 0 28px; }
+.flow .step { flex: 1; background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 16px; }
+.flow .step.on { border: 1.5px solid var(--accent); }
+.flow .step p:not(.label) { margin: 0; font-size: .9rem; }
+.flow .step h3 { font-size: .95rem; margin: 0 0 .25rem; }
+.flow .arrow { align-self: center; font-family: var(--mono); color: var(--muted); }
+/* Six-step flows don't fit one row: a grid, read left to right. */
+.flow.tight { display: grid; grid-template-columns: repeat(3, 1fr); }
+.flow.tight .arrow { display: none; }
+.flow.tight .step { padding: 12px; }
+ol.steps { list-style: none; counter-reset: st; padding: 0; margin: 0 0 28px; }
+ol.steps li { counter-increment: st; position: relative; padding: 0 0 .75rem 2.6rem; }
+ol.steps li::before { content: counter(st, decimal-leading-zero); position: absolute; left: 0; font-family: var(--mono); font-weight: 800; color: var(--accent); }
+@media (max-width: 639px) {
+  .flow { flex-direction: column; }
+  .flow .arrow { transform: rotate(90deg); }
+  .flow.tight { grid-template-columns: 1fr 1fr; }
+}
+
+/* Hero: the PDF's cover */
+.hero { min-height: 100vh; min-height: 100svh; display: flex; flex-direction: column; justify-content: center; padding: 96px 0 56px; }
+.hero h1 { font-size: clamp(2.75rem, 10vw, 4.75rem); line-height: 1.02; margin-top: .5rem; }
+.hero .lead { font-size: clamp(1.1rem, 2.4vw, 1.3rem); }
+.byline { font-family: var(--mono); font-size: .85rem; letter-spacing: .08em; color: var(--ink); margin: 0 0 1.75rem; }
+.hero .callout { order: 1; margin: 48px 0 0; }
+.actions { display: flex; flex-wrap: wrap; gap: 12px; }
+.setup .actions { margin: 0 0 1.5rem; }
+.btn {
+  display: inline-flex; align-items: center; min-height: 44px; padding: 0 20px; border-radius: 999px;
+  border: 1px solid var(--line); background: var(--card); color: var(--ink); font-weight: 600; font-size: .95rem;
+  text-decoration: none; transition: transform .2s ease, border-color .2s ease;
+}
+.btn:hover { border-color: var(--accent); transform: translateY(-1px); }
+.btn.primary { background: var(--accent); border-color: var(--accent); color: var(--card); }
+.btn.small { min-height: 38px; font-size: .85rem; align-self: flex-start; }
+
+/* Copy buttons (added by site.js) */
+.copy-btn {
+  position: absolute; top: 14px; right: 14px; font: 500 .7rem var(--mono); letter-spacing: .12em; text-transform: uppercase;
+  color: var(--code-ink); background: transparent; border: 1px solid var(--code-muted); border-radius: 999px; padding: 6px 12px; cursor: pointer;
+}
+.copy-btn:hover { border-color: var(--code-ink); }
+
+/* Navigation: a side rail on desktop; on phones a top bar that opens the same list */
+.progress { position: fixed; top: 0; left: 0; right: 0; height: 3px; z-index: 30; }
+.progress span { display: block; height: 100%; background: var(--accent); transform-origin: 0 50%; transform: scaleX(0); }
+.rail {
+  position: fixed; top: 0; bottom: 0; left: 0; width: 260px; padding: 28px 16px 0; overflow: hidden;
+  display: flex; flex-direction: column; gap: 20px; background: var(--paper); border-right: 1px solid var(--line);
+}
+.rail-pdf { margin: 0 10px; }
+/* The section list scrolls; the title and "Get the PDF" above it stay in view. */
+.rail ol { flex: 1; min-height: 0; overflow-y: auto; padding-bottom: 28px; }
+.rail-home { font-family: var(--mono); font-weight: 800; font-size: .75rem; letter-spacing: .1em; text-transform: uppercase; color: var(--ink); text-decoration: none; padding: 0 10px; }
+.rail ol { list-style: none; margin: 0; padding-left: 0; padding-right: 0; }
+.rail li a {
+  display: flex; gap: 10px; padding: 6px 10px; border-radius: 8px; font-size: .88rem; line-height: 1.35;
+  color: var(--ink-2); text-decoration: none; transition: background .2s ease, color .2s ease;
+}
+.rail .num { font-family: var(--mono); font-size: .75rem; color: var(--muted); min-width: 1.7em; padding-top: .1em; }
+.rail li a:hover { background: var(--card); }
+.rail li a[aria-current="true"] { background: var(--accent-soft); color: var(--accent); font-weight: 600; }
+.rail li a[aria-current="true"] .num { color: var(--accent); }
+.bar { display: none; }
+@media (min-width: 1000px) {
+  body { padding-left: 260px; }
+  html { scroll-padding-top: 24px; }
+}
+@media (max-width: 999px) {
+  .bar {
+    display: flex; position: fixed; top: 0; left: 0; right: 0; z-index: 20; height: 56px; padding: 0 8px 0 16px; gap: 8px;
+    align-items: center; background: var(--paper); border-bottom: 1px solid var(--line);
+  }
+  .bar button { background: none; border: 0; padding: 0; color: var(--ink); cursor: pointer; }
+  .bar-name {
+    flex: 1; min-width: 0; height: 100%; text-align: left; font: 600 .95rem var(--sans);
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  .bar-pdf {
+    flex: none; display: inline-flex; align-items: center; height: 34px; padding: 0 12px; border-radius: 999px;
+    background: var(--accent); color: var(--card); font-weight: 600; font-size: .8rem; text-decoration: none;
+  }
+  .bar-menu { flex: none; width: 44px; height: 44px; font-size: 1.1rem; }
+  .rail { top: 56px; right: 0; width: auto; z-index: 19; border-right: 0; opacity: 0; visibility: hidden; transform: translateY(-8px); transition: opacity .2s ease, transform .2s ease, visibility .2s; }
+  .menu-open { overflow: hidden; }
+  .menu-open .rail { opacity: 1; visibility: visible; transform: none; }
+}
+
+/* Footer */
+.site-foot { border-top: 1px solid var(--line); padding: 28px 16px 48px; text-align: center; }
+.site-foot p { margin: 0; font-family: var(--mono); font-size: .75rem; letter-spacing: .08em; color: var(--muted); }
+.site-foot a { color: inherit; }
+
+/* Motion: only when the script runs (.js) and the reader hasn't asked for less */
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
+  .js .hero > * { animation: rise .8s cubic-bezier(.2, .7, .2, 1) both; }
+  .js .hero > :nth-child(2) { animation-delay: .08s; }
+  .js .hero > :nth-child(3) { animation-delay: .16s; }
+  .js .hero > :nth-child(4) { animation-delay: .24s; }
+  .js .hero > :nth-child(5) { animation-delay: .4s; }
+  .js .hero > :nth-child(6) { animation-delay: .32s; }
+  .js .sec { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s cubic-bezier(.2, .7, .2, 1); }
+  .js .sec.in { opacity: 1; transform: none; }
+  .js .sec .flow > * { opacity: 0; transform: translateY(12px); transition: opacity .5s ease, transform .5s ease; transition-delay: calc(var(--i, 0) * 80ms + 200ms); }
+  .js .sec.in .flow > * { opacity: 1; transform: none; }
+}
+@keyframes rise { from { opacity: 0; transform: translateY(16px); } }
+
+/* #og: the hero alone, 1200×630, for the link preview (site/build.sh screenshots it) */
+.og body { padding: 0; }
+.og .rail, .og .bar, .og .progress, .og .sec, .og .site-foot, .og .hero .actions { display: none; }
+.og main { max-width: none; padding: 0 80px; }
+.og .hero { min-height: 0; height: 630px; padding: 48px 0; }
+.og .hero h1 { font-size: 4.5rem; }
+.og .hero .callout { margin-top: 28px; }

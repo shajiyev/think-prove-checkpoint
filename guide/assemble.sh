@@ -3,7 +3,10 @@
 # Usage: assemble.sh <src.html> <out.html>
 # Marker, on its own line: <!-- appendix A2: framework/global-CLAUDE.md framework/templates/spec.md -->
 # Paths are relative to the repo root, or absolute. APPENDIX_LINES = line budget per page.
-# Also fills the page 21 counts: {{commits}} {{decisions}} {{script_checks}} {{guide_checks}}.
+# Also fills the page 21 counts: {{commits}} {{decisions}} {{script_checks}} {{guide_checks}}
+# {{site_checks}},
+# and the facts from project.json (or $FACTS): {{version}} {{released}} {{repo}} {{repo_display}}
+# {{linkedin}} {{site}}. Fails on a missing fact (exit 2) or an unfilled {{placeholder}} (exit 3).
 set -euo pipefail
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 
@@ -12,10 +15,23 @@ COMMITS="$(git -C "$ROOT" rev-list --count HEAD)"
 DECISIONS="$(grep -c '^## ' "$ROOT/docs/decisions.md")"
 SCRIPT_CHECKS="$(checks "$ROOT/tests/test_scripts.sh")"
 GUIDE_CHECKS="$(checks "$ROOT/tests/test_guide.sh")"
+SITE_CHECKS="$(checks "$ROOT/tests/test_site.sh")"
+FACTS="${FACTS:-$ROOT/project.json}"
+[ -f "$FACTS" ] || { echo "missing $FACTS" >&2; exit 2; }
+# fact KEY: the value of a flat, one-per-line  "KEY": "value"  in the facts file.
+fact() {
+  grep -q "^[[:space:]]*\"$1\":" "$FACTS" || { echo "project.json: missing \"$1\"" >&2; return 2; }
+  sed -n "s/^[[:space:]]*\"$1\":[[:space:]]*\"\([^\"]*\)\".*/\1/p" "$FACTS"
+}
+VERSION="$(fact version)"; RELEASED="$(fact released)"; REPO="$(fact repo)"
+LINKEDIN="$(fact linkedin)"; SITE="$(fact site)"
+REPO_DISPLAY="${REPO#https://}"
 
 awk -v root="$ROOT" -v budget="${APPENDIX_LINES:-60}" \
     -v commits="$COMMITS" -v decisions="$DECISIONS" \
-    -v script_checks="$SCRIPT_CHECKS" -v guide_checks="$GUIDE_CHECKS" '
+    -v script_checks="$SCRIPT_CHECKS" -v guide_checks="$GUIDE_CHECKS" -v site_checks="$SITE_CHECKS" \
+    -v version="$VERSION" -v released="$RELEASED" -v repo="$REPO" \
+    -v repo_display="$REPO_DISPLAY" -v linkedin="$LINKEDIN" -v site="$SITE" '
 function esc(s) { gsub(/&/, "\\&amp;", s); gsub(/</, "\\&lt;", s); gsub(/>/, "\\&gt;", s); return s }
 function target(p) { if (p ~ /global-CLAUDE\.md$/) return "~/.claude/CLAUDE.md"; sub(/^.*framework\//, "~/.claude/", p); return p }
 function open_page() {
@@ -64,6 +80,12 @@ BEGIN { HEAD = 5 }
 {
   gsub(/\{\{commits\}\}/, commits); gsub(/\{\{decisions\}\}/, decisions)
   gsub(/\{\{script_checks\}\}/, script_checks); gsub(/\{\{guide_checks\}\}/, guide_checks)
+  gsub(/\{\{site_checks\}\}/, site_checks)
+  gsub(/\{\{version\}\}/, version); gsub(/\{\{released\}\}/, released)
+  gsub(/\{\{repo_display\}\}/, repo_display); gsub(/\{\{repo\}\}/, repo)
+  gsub(/\{\{linkedin\}\}/, linkedin); gsub(/\{\{site\}\}/, site)
   print
 }
 ' "$1" > "$2"
+left="$(grep -o '{{[a-z_]*}}' "$2" | sort -u | tr '\n' ' ' || true)"
+[ -z "$left" ] || { echo "unfilled placeholder(s): $left" >&2; exit 3; }

@@ -1,15 +1,13 @@
 # Roadmap
 
 ## Current status
-_Last updated: 2026-11-24_
-- **Done:** design, project setup, specs, plans (`docs/plans/installer.md`, `docs/plans/guide.md`);
-  **M2 complete:** framework payload, `install.sh`, `uninstall.sh` (24/24 tests pass), README + LICENSE.
-- **M3 complete:** the guide, 33 pages, reviewed by the author.
-- **Done (G8):** README leads with the agent path (prompts identical to the PDF); page 21 numbers
-  refreshed; final build 33 pages, 19 + 24 tests pass.
-- **Done (2026-11-25):** full page-by-page review applied (page 21 counts now automatic; British
-  spelling; version 1.0 line; cover contents complete).
-- **Next (M4, user):** tag v1.0, post on LinkedIn.
+_Last updated: 2026-11-25_
+- **Done:** M1–M3 (design, installer, 33-page guide); v1.0 tagged, repo public.
+- **Done (M5, L1–L6):** the website, built from the guide's own source: `project.json` holds the
+  facts, `tokens.css` the look; `site/build.sh` → `site/dist/` (hero, 24 sections, navigation,
+  animations, copy buttons, link preview). 43 site + 44 guide + 24 script checks pass; a stale PDF or site fails a test.
+- **Next (user):** hand check the site; commit; L7: deploy on Vercel (root `site/dist`, no
+  build), then the link goes into `project.json` and the README. Then M4's LinkedIn post, with the link.
 
 ## Milestones
 ### M1 — Foundation
@@ -31,5 +29,15 @@ _Last updated: 2026-11-24_
 ### M4 — Publish (user)
 - [x] User creates the GitHub repo and pushes
 - [x] Repo link added to the PDF; final build
-- [ ] User makes the repo public
-- [ ] LinkedIn post
+- [x] User makes the repo public (v1.0 tagged)
+- [ ] LinkedIn post (after M5, with the website link). Include: "It's a short read on how I work
+  with Claude Code. If you like it, your agent can set it up for you."
+
+### M5 — Website (`docs/plans/landing-page.md`)
+- [x] L1 Facts in one place (`project.json`)
+- [x] L2 Shared tokens (`tokens.css`)
+- [x] L3 Site build: structure
+- [x] L4 Screen layout and look
+- [x] L5 Behaviour: reveal, navigation, progress, menu, copy
+- [x] L6 Link preview, committed `site/dist`, freshness test
+- [ ] L7 Deploy on Vercel (user) and add the link

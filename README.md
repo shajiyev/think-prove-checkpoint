@@ -6,6 +6,8 @@ that lives in git, where you can read it, review it and roll it back.
 
 ### **[Download the practical guide (PDF)](guide/think-prove-checkpoint.pdf)**
 
+Version 1.0 · November 2026 · MIT licence
+
 ## Sound familiar?
 - You stay in one session for days, afraid that a new one means starting over.
 - You explain your project again and again.

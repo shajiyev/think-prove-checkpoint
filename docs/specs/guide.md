@@ -18,7 +18,7 @@ headed "Appendix · For your agent":
 | # | Page | Content |
 |---|---|---|
 | — | Cover | Title, subtitle, author credit, big idea "Claude forgets. Git doesn't.", contents table. Kept as approved in G1, except the label "A field guide" → "A practical guide" and "strict" → "structured" in the lead; top-right label "Solo dev · AI-assisted workflow" and lead "…building software with AI agents"; "The whole idea": the tagline on its own line, then "Your agent's memory lives in plain files in your repo, not in the chat." (author's requests, 2026-11-24). |
-| 00 | Start here | Lead names the audience: a solo developer's workflow. Two ways to use this PDF, side by side: read it (01–21), or hand it to your AI agent with the copy-paste prompt; a **compatibility warning** (it can clash with your current setup, so the agent analyses it first); the appendix is written for the agent |
+| 00 | Start here | Lead: read it like an article (nothing to install, nothing to follow); names the audience, a solo developer's workflow; setup by your agent is optional (its card points to "What you need: see 17"). Two ways to use this PDF, side by side: read it (01–21), or hand it to your AI agent with the copy-paste prompt; a **compatibility warning** (it can clash with your current setup, so the agent analyses it first); the appendix is written for the agent |
 | 01 | The problem | 4 failures: forgets between sessions · guesses silently · "done" without proof · memory you can't review |
 | 02 | The stack | Diagram: Principles (Karpathy) → Process (superpowers) → Memory (docs in git) |
 | 03 | Principles | Karpathy's 4 rules, credited |
@@ -35,7 +35,7 @@ headed "Appendix · For your agent":
 | 14 | Session start | Read CLAUDE.md → roadmap Current status → confirm before changing anything |
 | 15 | Safety & ethics | Secrets, confirm destructive actions, private-memory mode, evidence before claims |
 | 16 | Worked example | One feature start to finish — **labeled "illustration"** |
-| 17 | Hand it to your agent | The copy-paste prompt; the compatibility warning in full; diagram of what the agent does: reads the PDF → **analyses your current setup and reports conflicts** → asks you questions → shows every change → backs up, then writes → you say "set up the project" |
+| 17 | Hand it to your agent | A **What you need** box (paid Claude plan or Console account; Anthropic's install command, then `claude` to sign in; Git, GitHub optional); the copy-paste prompt; the compatibility warning in full; diagram of what the agent does: reads the PDF → **analyses your current setup and reports conflicts** → asks you questions → shows every change → backs up, then writes → you say "set up the project" |
 | 18 | Tailor it, or take it back | The 6 tailoring questions and their defaults; **extend it:** this is a base, not a fence, ask your agent to find skills that fit your way of working; the one-line revert prompt; the backup note that lets any later session revert |
 | 19 | Cheat sheet | Trigger words + setup / per-feature / checkpoint checklists |
 | 20 | Copy-paste prompts | Session kickoff, bug report, "checkpoint" |
@@ -118,7 +118,9 @@ growing". No certificate count, no club (author's request); facts from the autho
   `guide/think-prove-checkpoint.pdf` with Chrome headless, then loads it with `#check` and fails
   unless overflow is `none`, PDF pages = sections, and every appendix file's rendered text equals
   its source byte for byte. Prints `pdf pages · sections · overflow · appendix: N files`.
-- `guide/assemble.sh <src> <out>` — fills page 21's counts (`{{commits}}` from git, `{{decisions}}`
+- `guide/assemble.sh <src> <out>` — fills the facts from `project.json` (`{{version}}`, `{{released}}`,
+  `{{repo}}`, `{{repo_display}}`, `{{linkedin}}`, `{{site}}`; fails on a missing or unfilled one) and
+  page 21's counts (`{{commits}}` from git, `{{decisions}}`
   from `docs/decisions.md`, `{{script_checks}}` / `{{guide_checks}}` = `check` lines in each test
   file) and expands `<!-- appendix A3: <paths> -->` into appendix pages
   (HTML-escaped, headed "target path · lines a–b of n"); splits only files longer than a page;
@@ -203,3 +205,8 @@ memory layer and checkpoint routine; closing title "Think · Prove · Checkpoint
 research more; page 18 "extend it"; agent rule 10 offers skill research after setup.
 2026-11-24 — Compatibility first: warning on pages 00 + 17; the agent analyses the current setup
 and reports conflicts before asking or changing anything.
+2026-11-25 — Website work: facts come from `project.json`; tokens moved to `tokens.css`; page 21
+counts the website tests too (`{{site_checks}}`); the real build in `test_guide.sh` writes to a temp folder.
+The committed PDF must read the same as a fresh build (`tests/test_guide.sh`, text layer, commit count masked).
+2026-11-25 — Page 00's lead: "Read it like an article", reading first, setup optional (author's request).
+2026-11-25 — "What you need" box on 17 (no room on 00, which points to it); install facts checked against code.claude.com/docs/en/setup.

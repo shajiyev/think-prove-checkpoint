@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Think · Prove · Checkpoint</title>
+<meta name="description" content="A practical guide to building software with AI agents: principles that stop the guessing, skills that demand proof, and project memory that lives in git.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Think · Prove · Checkpoint">
+<meta property="og:description" content="A practical guide to building software with AI agents: principles that stop the guessing, skills that demand proof, and project memory that lives in git.">
+<meta property="og:url" content="{{site}}">
+<meta property="og:image" content="{{site}}/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<script>document.documentElement.classList.add(location.hash === "#og" ? "og" : "js");</script>
+<link rel="stylesheet" href="web.css">
+</head>
+<body>
+<div class="progress" aria-hidden="true"><span></span></div>
+<div class="bar">
+  <button class="bar-name" type="button" aria-expanded="false" aria-controls="toc" data-menu>Contents</button>
+  <a class="bar-pdf" href="think-prove-checkpoint.pdf">Get the PDF</a>
+  <button class="bar-menu" type="button" aria-expanded="false" aria-controls="toc" aria-label="Sections" data-menu>☰</button>
+</div>
+<nav class="rail" id="toc" aria-label="Sections">
+  <a class="rail-home" href="#top">Think · Prove · Checkpoint</a>
+  <a class="btn primary small rail-pdf" href="think-prove-checkpoint.pdf">Get the PDF</a>
+  <ol>
+<!-- nav -->
+<li><a href="#set-it-up" data-name="Set it up"><span class="num">→</span>Set it up</a></li>
+  </ol>
+</nav>
+<main>
+<header class="hero" id="top">
+<!-- hero -->
+  <div class="actions">
+    <a class="btn primary" href="#00-start-here">Read the guide</a>
+    <a class="btn" href="{{repo}}">GitHub</a>
+  </div>
+</header>
+
+<!-- sections -->
+<section class="sec setup" id="set-it-up">
+  <p class="label">Set it up</p>
+  <h1>Hand it to your <span class="hl">agent</span></h1>
+  <p class="lead">Get the PDF, give it to your agent, and paste the prompt from <a href="#00-start-here">00 · Start here</a>. Your agent checks your setup first and changes nothing until you decide.</p>
+  <div class="actions">
+    <a class="btn primary" href="think-prove-checkpoint.pdf">Get the PDF</a>
+    <a class="btn" href="{{repo}}">View on GitHub</a>
+  </div>
+  <p class="note">Prefer the files? <a href="{{repo}}/tree/main/framework">framework/</a> holds the global file and the templates; <a href="{{repo}}/tree/main/scripts">scripts/</a> installs and uninstalls them.</p>
+</section>
+</main>
+<footer class="site-foot">
+  <p>Version {{version}} · {{released}} · MIT licence · <a href="{{repo}}">{{repo_display}}</a></p>
+</footer>
+<script src="site.js"></script>
+</body>
+</html>

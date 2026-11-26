@@ -1,18 +1,4 @@
-@font-face { font-family: "Inter"; font-weight: 400; src: url(fonts/inter-latin-400-normal.woff2) format("woff2"); }
-@font-face { font-family: "Inter"; font-weight: 600; src: url(fonts/inter-latin-600-normal.woff2) format("woff2"); }
-@font-face { font-family: "Inter"; font-weight: 800; src: url(fonts/inter-latin-800-normal.woff2) format("woff2"); }
-@font-face { font-family: "JetBrains Mono"; font-weight: 500; src: url(fonts/jetbrains-mono-latin-500-normal.woff2) format("woff2"); }
-@font-face { font-family: "JetBrains Mono"; font-weight: 800; src: url(fonts/jetbrains-mono-latin-800-normal.woff2) format("woff2"); }
-
-:root {
-  --paper: #F4F5F7; --card: #FFFFFF; --ink: #14161B; --ink-2: #3D424B;
-  --muted: #8A8F98; --line: #D9DCE1;
-  --accent: #2F5BFF; --accent-soft: #E7ECFF;
-  --ok: #12B886; --ok-soft: #E2F6EE;
-  --code-bg: #14161B; --code-ink: #E8EAEE; --code-muted: #9BA3AF;
-  --sans: "Inter", system-ui, sans-serif;
-  --mono: "JetBrains Mono", ui-monospace, monospace;
-}
+@import url("tokens.css");
 
 @page { size: A4; margin: 0; }
 * { box-sizing: border-box; }
@@ -56,6 +42,8 @@ code { font-family: var(--mono); font-size: .88em; color: var(--accent); backgro
 .card { background: var(--card); border: 1px solid var(--line); border-radius: 4mm; padding: 5mm; }
 .card p:not(.label) { margin: 0; font-size: 9.5pt; }
 .card .label { margin-bottom: 2mm; }
+.card.need { margin: 0 0 7mm; }
+.card.need p:not(.label) + p { margin-top: 1.5mm; }
 
 .callout { border: 1.5px solid var(--accent); background: var(--accent-soft); border-radius: 4mm; padding: 5mm 6mm; margin: 0 0 7mm; }
 .callout .label { margin-bottom: 2mm; }
