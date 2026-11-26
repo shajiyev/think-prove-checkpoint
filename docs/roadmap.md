@@ -7,9 +7,11 @@ _Last updated: 2026-11-26_
   cover, in the README and named on 01. Tag `v1.1` after pushing.
 - **Done (M5, L1–L6):** the website, built from the guide's own source: `project.json` holds the
   facts, `tokens.css` the look; `site/build.sh` → `site/dist/` (hero, 24 sections, navigation,
-  animations, copy buttons, link preview). 43 site + 47 guide + 24 script checks pass; a stale PDF or site fails a test.
-- **Next (user):** hand check v1.1; commit, push, tag `v1.1`; L7: deploy on Vercel (root `site/dist`, no
-  build), then the link goes into `project.json` and the README. Then M4's LinkedIn post, with the link.
+  animations, copy buttons, link preview). 43 site + 50 guide + 24 script checks pass; a stale PDF or site fails a test.
+- **Done (L7):** live at https://think-prove-checkpoint.vercel.app (Vercel project
+  `think-prove-checkpoint`, root `site/dist`, no build; redeploys on every push to `main`). The link
+  is in `project.json`, the README and the PDF's end page (v1.1.1).
+- **Next (user):** hand check v1.1.1; commit, push, tag `v1.1.1`. Then M4's LinkedIn post, with the link.
 
 ## Milestones
 ### M1 — Foundation
@@ -43,4 +45,4 @@ _Last updated: 2026-11-26_
 - [x] L4 Screen layout and look
 - [x] L5 Behaviour: reveal, navigation, progress, menu, copy
 - [x] L6 Link preview, committed `site/dist`, freshness test
-- [ ] L7 Deploy on Vercel (user) and add the link
+- [x] L7 Deploy on Vercel and add the link

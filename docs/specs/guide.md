@@ -119,7 +119,7 @@ growing". No certificate count, no club (author's request); facts from the autho
   unless overflow is `none`, PDF pages = sections, and every appendix file's rendered text equals
   its source byte for byte. Prints `pdf pages · sections · overflow · appendix: N files`.
 - `guide/assemble.sh <src> <out>` — fills the facts from `project.json` (`{{version}}`, `{{released}}`,
-  `{{repo}}`, `{{repo_display}}`, `{{linkedin}}`, `{{site}}`; fails on a missing or unfilled one) and
+  `{{repo}}`, `{{repo_display}}`, `{{linkedin}}`, `{{site}}`, `{{latest}}`, `{{latest_display}}`; fails on a missing or unfilled one) and
   page 21's counts (`{{commits}}` from git, `{{decisions}}`
   from `docs/decisions.md`, `{{script_checks}}` / `{{guide_checks}}` = `check` lines in each test
   file) and expands `<!-- appendix A3: <paths> -->` into appendix pages
@@ -211,3 +211,4 @@ The committed PDF must read the same as a fresh build (`tests/test_guide.sh`, te
 2026-11-25 — Page 00's lead: "Read it like an article", reading first, setup optional (author's request).
 2026-11-25 — "What you need" box on 17 (no room on 00, which points to it); install facts checked against code.claude.com/docs/en/setup.
 2026-11-26 — v1.1: "spec-driven" on the cover and in the README; 01 names spec-driven development.
+2026-11-26 — The end page's "Latest version" is the website (`{{latest}}`), with the repo beside it; v1.1.1.

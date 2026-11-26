@@ -6,7 +6,8 @@
 # Also fills the page 21 counts: {{commits}} {{decisions}} {{script_checks}} {{guide_checks}}
 # {{site_checks}},
 # and the facts from project.json (or $FACTS): {{version}} {{released}} {{repo}} {{repo_display}}
-# {{linkedin}} {{site}}. Fails on a missing fact (exit 2) or an unfilled {{placeholder}} (exit 3).
+# {{linkedin}} {{site}}, and {{latest}} {{latest_display}} (the site, or the repo until there is
+# one). Fails on a missing fact (exit 2) or an unfilled {{placeholder}} (exit 3).
 set -euo pipefail
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 
@@ -26,12 +27,14 @@ fact() {
 VERSION="$(fact version)"; RELEASED="$(fact released)"; REPO="$(fact repo)"
 LINKEDIN="$(fact linkedin)"; SITE="$(fact site)"
 REPO_DISPLAY="${REPO#https://}"
+LATEST="${SITE:-$REPO}"; LATEST_DISPLAY="${LATEST#https://}"
 
 awk -v root="$ROOT" -v budget="${APPENDIX_LINES:-60}" \
     -v commits="$COMMITS" -v decisions="$DECISIONS" \
     -v script_checks="$SCRIPT_CHECKS" -v guide_checks="$GUIDE_CHECKS" -v site_checks="$SITE_CHECKS" \
     -v version="$VERSION" -v released="$RELEASED" -v repo="$REPO" \
-    -v repo_display="$REPO_DISPLAY" -v linkedin="$LINKEDIN" -v site="$SITE" '
+    -v repo_display="$REPO_DISPLAY" -v linkedin="$LINKEDIN" -v site="$SITE" \
+    -v latest="$LATEST" -v latest_display="$LATEST_DISPLAY" '
 function esc(s) { gsub(/&/, "\\&amp;", s); gsub(/</, "\\&lt;", s); gsub(/>/, "\\&gt;", s); return s }
 function target(p) { if (p ~ /global-CLAUDE\.md$/) return "~/.claude/CLAUDE.md"; sub(/^.*framework\//, "~/.claude/", p); return p }
 function open_page() {
@@ -84,6 +87,7 @@ BEGIN { HEAD = 5 }
   gsub(/\{\{version\}\}/, version); gsub(/\{\{released\}\}/, released)
   gsub(/\{\{repo_display\}\}/, repo_display); gsub(/\{\{repo\}\}/, repo)
   gsub(/\{\{linkedin\}\}/, linkedin); gsub(/\{\{site\}\}/, site)
+  gsub(/\{\{latest_display\}\}/, latest_display); gsub(/\{\{latest\}\}/, latest)
   print
 }
 ' "$1" > "$2"

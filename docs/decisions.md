@@ -193,3 +193,14 @@ build loop matches it; vision, roadmap, decisions and features are project memor
 the guide claims the family, not the whole.
 **Alternatives considered:** renaming the guide; keeping "structured" alongside "spec-driven"
 (heavier); the note inside "The fix" box (louder).
+
+## 2026-11-26 — Deployed; the PDF points readers to the website
+**Decision:** the site is live at https://think-prove-checkpoint.vercel.app (Vercel project
+`think-prove-checkpoint`, deployed through the Vercel connection at the author's request; Vercel
+serves `site/dist` as committed). The PDF's end page says "Latest version: <site> · Files: <repo>"
+via `{{latest}}`, which falls back to the repo while `site` is empty. A1 keeps the repo. Released as
+**v1.1.1**.
+**Why:** a downloaded PDF can't update itself, so it should send readers to the page that always
+has the newest version. Agents reading A1 need the raw files, which only the repo has. A patch number
+keeps every tag matching what's in it for a change that adds a link but no content.
+**Alternatives considered:** keeping 1.1 (the PDF would differ from the v1.1 tag); 1.2.

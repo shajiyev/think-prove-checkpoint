@@ -63,6 +63,8 @@ check "README links the repo from project.json" grep -qF "$(fact repo)" "$ROOT/R
 check "README links LinkedIn from project.json" grep -qF "$(fact linkedin)" "$ROOT/README.md"
 site_linked() { local s; s="$(fact site)"; [ -z "$s" ] || grep -qF "$s" "$ROOT/README.md"; }
 check "README links the site, once there is one" site_linked
+site_latest() { local s; s="$(fact site)"; [ -z "$s" ] || grep -qF "Latest version: <a class=\"link\" href=\"$s\">${s#https://}</a>" "$gen"; }
+check "the end page's latest version is the site, once there is one" site_latest
 
 assemble_with() { FACTS="$1" "$ROOT/guide/assemble.sh" "$TMP/$2.html" "$TMP/$2.gen.html" > "$TMP/$2.log" 2>&1; }
 sed 's/"version": "[^"]*"/"version": "9.9"/' "$ROOT/project.json" > "$TMP/custom.json"
@@ -76,6 +78,10 @@ check "...and names it" logged plain 'missing "released"'
 printf '<p>{{nope}}</p>\n' > "$TMP/unknown.html"
 check "an unknown placeholder fails" refuses assemble_with "$ROOT/project.json" unknown
 check "...and names it" logged unknown "{{nope}}"
+sed 's/"site": "[^"]*"/"site": ""/' "$ROOT/project.json" > "$TMP/nosite.json"
+printf '<p>{{latest}}</p>\n' > "$TMP/latest.html"
+check "with no site yet, latest version is the repo" assemble_with "$TMP/nosite.json" latest
+check "...filled in" grep -qF "<p>$(fact repo)</p>" "$TMP/latest.gen.html"
 
 echo "# appendix text survives HTML exactly"
 printf '%s\n' '<script>alert(1)</script>' 'a & b &amp; c' '</pre> is just text' \

@@ -14,5 +14,5 @@ Status: `planned` · `in progress` · `done` · `dropped`
 | README | done | `specs/installer.md` | Mirrors the guide (agent path first); optional manual install for technical readers |
 | Project facts (`project.json`) | done | `specs/landing-page.md` | Version, date, links filled into PDF and site; README checked by tests |
 | Shared design tokens | done | `specs/landing-page.md` | `guide/src/tokens.css`, used by print and web |
-| Website (landing page) | in progress | `specs/landing-page.md` | Built and tested; deploy on Vercel pending (L7) |
+| Website (landing page) | done | `specs/landing-page.md` | Live at think-prove-checkpoint.vercel.app; redeploys on push |
 | LinkedIn carousel teaser | dropped (for now) | — | Possible later, separately |

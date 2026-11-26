@@ -31,4 +31,5 @@
 
 ## Run & test
 - Run: `guide/build.sh && site/build.sh`, then `open site/dist/index.html`
+- Live: https://think-prove-checkpoint.vercel.app (Vercel redeploys on every push to `main`)
 - Test: `tests/test_site.sh`

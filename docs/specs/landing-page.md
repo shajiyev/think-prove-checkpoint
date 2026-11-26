@@ -12,11 +12,13 @@ the **same source** as the PDF, so the two can never say different things. Proje
 { "version": "1.0", "released": "November 2026",
   "repo": "https://github.com/shajiyev/think-prove-checkpoint",
   "linkedin": "https://www.linkedin.com/in/sabir-hajiyev-9948a9364/",
-  "site": "" }
+  "site": "https://think-prove-checkpoint.vercel.app" }
 ```
 - `guide/assemble.sh` fills `{{version}}`, `{{released}}`, `{{repo}}`, `{{linkedin}}`, `{{site}}`
   the way it already fills page 21's counts. `guide.html` holds placeholders, not typed values.
 - `{{repo_display}}` is derived: `repo` without `https://` (the visible link text).
+- `{{latest}}` / `{{latest_display}}`: the site, or the repo while `site` is empty. The PDF's end page
+  says "Latest version: <site> · Files: <repo>"; A1 (for agents) keeps the repo, where the files are.
 - `assemble.sh` fails, naming them, on any `{{placeholder}}` it couldn't fill, and on a key missing
   from `project.json`.
 - The README is shown as written by GitHub, so it is not generated; it gets a version line
@@ -74,8 +76,9 @@ Built on the author's Mac and **committed**; Vercel never builds. Exits non-zero
 message on: a missing `project.json` key, a `{{placeholder}}` with no value, a page with no
 section name, a duplicate section anchor, or a missing PDF.
 
-**Deploy (last step, user):** import the repo into Vercel, root directory `site/dist`, no build
-command, no framework. Then put the link in `project.json` → `site`, rebuild, commit, push.
+**Deploy (done 2026-11-26):** Vercel project `think-prove-checkpoint`, linked to the GitHub repo;
+root directory `site/dist`, framework none, no build or install command, output `.`. Every push to
+`main` redeploys it. Public address: https://think-prove-checkpoint.vercel.app (in `project.json`).
 
 ## Out of scope
 - Building on Vercel (its shallow clone would also miscount page 21's commits).
@@ -104,6 +107,8 @@ page, breaks "Chrome is the only dependency"). `site/dist` is committed like the
 - `tests/test_site.sh` — site tests
 
 ## Gotchas
+- Vercel's default protection (Vercel Authentication) asks for a login on the team and per-deployment
+  URLs (`…-sabir-projects.vercel.app`); only the production domain is public. Share that one.
 - **Page 21's commit count changes with every commit**, so `site/dist` can never match HEAD
   exactly. The build marks that value in the HTML and the up-to-date test ignores it; everything
   else must match. (The PDF already labels it "as of this build".)
@@ -161,3 +166,6 @@ bar), outside links and the PDF in new tabs, hero buttons on one line on phones;
 `tests/test_guide.sh`.
 2026-11-25 — Hero's **Get the PDF** removed (the navigation always shows it); the phone-only button
 shrinking went with it, as two buttons fit at 360px.
+2026-11-26 — Deployed (L7): Vercel project `think-prove-checkpoint` (team "Sabir"), production
+domain https://think-prove-checkpoint.vercel.app; every live file matched `site/dist` byte for byte.
+`site` filled in; the PDF's end page points to it (v1.1.1).
