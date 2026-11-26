@@ -1,12 +1,14 @@
 # Roadmap
 
 ## Current status
-_Last updated: 2026-11-25_
+_Last updated: 2026-11-26_
 - **Done:** M1–M3 (design, installer, 33-page guide); v1.0 tagged, repo public.
+- **Done (v1.1, content):** read-first lead on 00; "What you need" on 17; "spec-driven" on the
+  cover, in the README and named on 01. Tag `v1.1` after pushing.
 - **Done (M5, L1–L6):** the website, built from the guide's own source: `project.json` holds the
   facts, `tokens.css` the look; `site/build.sh` → `site/dist/` (hero, 24 sections, navigation,
-  animations, copy buttons, link preview). 43 site + 44 guide + 24 script checks pass; a stale PDF or site fails a test.
-- **Next (user):** hand check the site; commit; L7: deploy on Vercel (root `site/dist`, no
+  animations, copy buttons, link preview). 43 site + 47 guide + 24 script checks pass; a stale PDF or site fails a test.
+- **Next (user):** hand check v1.1; commit, push, tag `v1.1`; L7: deploy on Vercel (root `site/dist`, no
   build), then the link goes into `project.json` and the README. Then M4's LinkedIn post, with the link.
 
 ## Milestones
@@ -31,7 +33,8 @@ _Last updated: 2026-11-25_
 - [x] Repo link added to the PDF; final build
 - [x] User makes the repo public (v1.0 tagged)
 - [ ] LinkedIn post (after M5, with the website link). Include: "It's a short read on how I work
-  with Claude Code. If you like it, your agent can set it up for you."
+  with Claude Code. If you like it, your agent can set it up for you." Name the method:
+  spec-driven development (with the memory layer and checkpoints on top).
 
 ### M5 — Website (`docs/plans/landing-page.md`)
 - [x] L1 Facts in one place (`project.json`)

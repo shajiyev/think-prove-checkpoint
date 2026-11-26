@@ -181,3 +181,15 @@ keeps 00's "nothing to install" lead true. Git is listed although Claude Code's 
 optional, because this workflow's memory lives in commits.
 **Alternatives considered:** trimming 00's "Before you install" callout and appendix note; a separate
 "Before you start" page.
+
+## 2026-11-26 — Name the method: spec-driven development
+**Decision:** the cover lead and the README tagline say "a small, spec-driven way of building
+software with AI agents" (replacing "structured"); a note under 01's "The fix" names **spec-driven
+development** (GitHub's Spec Kit, AWS's Kiro) and says what this workflow adds: the memory around
+the spec and the checkpoints that keep it current. The LinkedIn post names it too. Released as v1.1.
+**Why:** the author's professor recognised the workflow as spec-driven development; readers know
+the term, so naming it early places the guide in a familiar family. The brainstorm → spec → plan →
+build loop matches it; vision, roadmap, decisions and features are project memory, not specs, so
+the guide claims the family, not the whole.
+**Alternatives considered:** renaming the guide; keeping "structured" alongside "spec-driven"
+(heavier); the note inside "The fix" box (louder).

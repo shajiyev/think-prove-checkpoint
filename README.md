@@ -1,12 +1,12 @@
 # Think · Prove · Checkpoint
 
-**Claude forgets. Git doesn't.** A small, structured way of building software with AI agents, for
+**Claude forgets. Git doesn't.** A small, spec-driven way of building software with AI agents, for
 solo developers: principles that stop the guessing, skills that demand proof, and project memory
 that lives in git, where you can read it, review it and roll it back.
 
 ### **[Download the practical guide (PDF)](guide/think-prove-checkpoint.pdf)**
 
-Version 1.0 · November 2026 · MIT licence
+Version 1.1 · November 2026 · MIT licence
 
 ## Sound familiar?
 - You stay in one session for days, afraid that a new one means starting over.

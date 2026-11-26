@@ -17,9 +17,9 @@ headed "Appendix · For your agent":
 
 | # | Page | Content |
 |---|---|---|
-| — | Cover | Title, subtitle, author credit, big idea "Claude forgets. Git doesn't.", contents table. Kept as approved in G1, except the label "A field guide" → "A practical guide" and "strict" → "structured" in the lead; top-right label "Solo dev · AI-assisted workflow" and lead "…building software with AI agents"; "The whole idea": the tagline on its own line, then "Your agent's memory lives in plain files in your repo, not in the chat." (author's requests, 2026-11-24). |
+| — | Cover | Title, subtitle, author credit, big idea "Claude forgets. Git doesn't.", contents table. Kept as approved in G1, except the label "A field guide" → "A practical guide" and "strict" → "structured" in the lead; top-right label "Solo dev · AI-assisted workflow" and lead "…building software with AI agents"; "The whole idea": the tagline on its own line, then "Your agent's memory lives in plain files in your repo, not in the chat." (author's requests, 2026-11-24). Lead: "A small, spec-driven way…" (was "structured", 2026-11-26). |
 | 00 | Start here | Lead: read it like an article (nothing to install, nothing to follow); names the audience, a solo developer's workflow; setup by your agent is optional (its card points to "What you need: see 17"). Two ways to use this PDF, side by side: read it (01–21), or hand it to your AI agent with the copy-paste prompt; a **compatibility warning** (it can clash with your current setup, so the agent analyses it first); the appendix is written for the agent |
-| 01 | The problem | 4 failures: forgets between sessions · guesses silently · "done" without proof · memory you can't review |
+| 01 | The problem | 4 failures: forgets between sessions · guesses silently · "done" without proof · memory you can't review; a note under "The fix" names the method, **spec-driven development** (GitHub's Spec Kit, AWS's Kiro), and what this workflow adds: the memory and the checkpoints |
 | 02 | The stack | Diagram: Principles (Karpathy) → Process (superpowers) → Memory (docs in git) |
 | 03 | Principles | Karpathy's 4 rules, credited |
 | 04 | What I run | **Built on other people's skills:** superpowers (core) and Karpathy's principles (andrej-karpathy-skills), credited; tried & dropped: claude-mem, gsd-core, and why; a strong **"Go explore"** callout: there are many useful skills out there, research them and add the ones that fit how you work; read a skill before installing it |
@@ -210,3 +210,4 @@ counts the website tests too (`{{site_checks}}`); the real build in `test_guide.
 The committed PDF must read the same as a fresh build (`tests/test_guide.sh`, text layer, commit count masked).
 2026-11-25 — Page 00's lead: "Read it like an article", reading first, setup optional (author's request).
 2026-11-25 — "What you need" box on 17 (no room on 00, which points to it); install facts checked against code.claude.com/docs/en/setup.
+2026-11-26 — v1.1: "spec-driven" on the cover and in the README; 01 names spec-driven development.

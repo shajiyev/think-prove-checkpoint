@@ -47,6 +47,11 @@ check "17 has a What you need box" grep -qF 'What you need' <(page "17 · Hand i
 check "...with Anthropic's install command" grep -qF 'curl -fsSL https://claude.ai/install.sh | bash' <(page "17 · Hand it to your agent")
 check "00's agent option points to it" grep -qF 'What you need: see 17' <(page "00 · Start here")
 
+echo "# readers recognise the method"
+check "the cover calls it spec-driven" grep -qF 'A small, spec-driven way' <(page "Solo dev · AI-assisted workflow")
+check "01 names spec-driven development" grep -qF '<strong>spec-driven development</strong>' <(page "01 · The problem")
+check "the README calls it spec-driven" grep -qF 'A small, spec-driven way' "$ROOT/README.md"
+
 echo "# facts come from project.json"
 fact() { sed -n "s/^[[:space:]]*\"$1\":[[:space:]]*\"\([^\"]*\)\".*/\1/p" "$ROOT/project.json"; }
 check "version line uses project.json" grep -qF "Version $(fact version) · $(fact released) · " "$gen"
