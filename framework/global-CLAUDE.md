@@ -96,7 +96,7 @@ If we've just finished a meaningful unit of work and the user hasn't asked, **pr
 suggest it** — "We finished X; want me (the agent) to checkpoint and prepare the commit?"
 
 ## Private (uncommitted) project memory — opt-in
-When the user wants the planning files private (e.g. graded/shared repos):
+When the user wants the planning files private:
 - Add `CLAUDE.md`, `docs/`, `.claude/` to `.git/info/exclude` — **not** `.gitignore`
   (local-only: nothing about the docs appears in the repo or as changes in the git UI).
 - Record the choice in that project's `CLAUDE.md` and `docs/decisions.md`.
